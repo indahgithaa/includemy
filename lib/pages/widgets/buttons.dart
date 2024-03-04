@@ -25,6 +25,7 @@ class Buttons extends StatelessWidget {
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(backgroundColor),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+          elevation: MaterialStateProperty.all<double>(0),
           minimumSize: MaterialStateProperty.all<Size>(Size(width, 52))
         ),
         child: Text(

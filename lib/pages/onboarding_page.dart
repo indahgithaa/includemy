@@ -10,12 +10,13 @@ class OnboardingPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Buttons(
               text: "Daftar", 
               onClicked: (){}, 
               width: 343, 
-              backgroundColor: Color(0xFF1355FF).withOpacity(1), 
+              backgroundColor: Color.fromRGBO(19, 85, 255, 0.05), 
               fontColor: ColorStyles.primary,
               )
             ]
