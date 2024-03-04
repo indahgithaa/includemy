@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import './widgets/buttons.dart';
 import '../styles/color_styles.dart';
 import './widgets/text_fields.dart';
+import './widgets/segmented_options.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -39,6 +40,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   color: ColorStyles.greyText,
                 )
               ),
+              SizedBox(height: 15,),
+              SegmentedOption(),
               SizedBox(height: 15,),
               Buttons(
               text: "Daftar", 
