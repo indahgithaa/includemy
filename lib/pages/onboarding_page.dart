@@ -4,6 +4,7 @@ import './widgets/buttons.dart';
 import '../styles/color_styles.dart';
 import './widgets/text_fields.dart';
 import './widgets/segmented_options.dart';
+import './widgets/password_fields.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -14,6 +15,9 @@ class OnboardingPage extends StatefulWidget {
 
 class _OnboardingPageState extends State<OnboardingPage> {
   TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  String _userDisability = "";
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +45,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 )
               ),
               SizedBox(height: 15,),
+              PasswordTextFields(passwordController: passwordController),
+              SizedBox(height: 15,),
               SegmentedOption(),
               SizedBox(height: 15,),
               Buttons(
@@ -50,6 +56,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               backgroundColor: Color.fromRGBO(19, 85, 255, 0.05), 
               fontColor: ColorStyles.primary,
               ),
+              
             ]
           ),
         ),

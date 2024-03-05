@@ -3,7 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:includemy/styles/color_styles.dart';
 
 class SegmentedOption extends StatefulWidget {
-  const SegmentedOption({super.key});
+  final String _userDisability = "";
+
+  const SegmentedOption({Key? key,});
 
   @override
   State<SegmentedOption> createState() => _SegmentedOptionState();
@@ -32,6 +34,7 @@ class _SegmentedOptionState extends State<SegmentedOption> {
                   setState(() {
                     _choiceIndex = 0;
                     _userDisability = "Tuna Rungu";
+                    print("disabilitas:" + _userDisability);
                   });
                 }
               },
@@ -59,6 +62,7 @@ class _SegmentedOptionState extends State<SegmentedOption> {
                     _choiceIndex = 1;
                     _userDisability = "Tuna Daksa";
                   });
+                  print("disabilitas:" + _userDisability);
                 }
               },
               child: Container(

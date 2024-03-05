@@ -35,19 +35,26 @@ class _TextFieldsState extends State<TextFields> {
         ),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(16),
-          prefixIcon: widget.icon,
+          prefixIcon: Icon(
+            Icons.email_outlined,
+            size: 16,
+          ),
           hintText: widget.text,
           hintStyle: TextStyle(
             color: ColorStyles.greyText,
           ),
-          border: OutlineInputBorder(
+          enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(
+              color: ColorStyles.greyOutline, // Unfocused border color
+            ),
           ),
           focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(
-              color: ColorStyles.greyOutline,
-            )
-          )
+              color: ColorStyles.greyOutline, // Focused border color
+            ),
+          ),
         ),
       ),
     );
