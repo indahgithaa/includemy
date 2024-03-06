@@ -5,6 +5,7 @@ import '../styles/color_styles.dart';
 import './widgets/text_fields.dart';
 import './widgets/segmented_options.dart';
 import './widgets/password_fields.dart';
+import './widgets/chip_options.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -47,6 +48,15 @@ class _OnboardingPageState extends State<OnboardingPage> {
               SizedBox(height: 15,),
               PasswordTextFields(passwordController: passwordController),
               SizedBox(height: 15,),
+              Row(
+                children: [
+                  ChipOptions(
+                    icon: "💻",
+                    job: "Administrasi"
+                    )
+                ],
+              ),
+              SizedBox(height: 15,),
               SegmentedOption(),
               SizedBox(height: 15,),
               Buttons(
@@ -56,7 +66,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
               backgroundColor: Color.fromRGBO(19, 85, 255, 0.05), 
               fontColor: ColorStyles.primary,
               ),
-              
             ]
           ),
         ),
