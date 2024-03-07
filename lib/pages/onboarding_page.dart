@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:includemy/styles/color_styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import './widgets/buttons.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({Key? key}) : super(key: key);
@@ -47,12 +48,27 @@ class OnboardingPage extends StatelessWidget {
                     ),
                     SizedBox(height: 14,),
                     Text(
-                      "Selamat datang di InclusiJob, sahabat disabilitas untuk prospek karir gemilang!",
+                      "Selamat datang di Includemy, sahabat disabilitas untuk prospek karir gemilang!",
                       style: GoogleFonts.outfit(
                         fontSize: 14,
                         color: ColorStyles.greyText,
                       ),
-                    )
+                    ),
+                    SizedBox(height: 32,),
+                    Buttons(
+                      text: "Masuk", 
+                      onClicked: (){}, 
+                      width: MediaQuery.of(context).size.width, 
+                      backgroundColor: ColorStyles.primary.withOpacity(0.05), 
+                      fontColor: ColorStyles.primary
+                    ),
+                    SizedBox(height: 12,),
+                    Buttons(
+                      text: "Buat Akun > ",
+                      onClicked: (){},
+                      width: MediaQuery.of(context).size.width, 
+                      backgroundColor: ColorStyles.primary,
+                      fontColor: ColorStyles.white,)
                   ],
                 ),
               ),
