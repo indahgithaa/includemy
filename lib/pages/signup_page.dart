@@ -59,7 +59,7 @@ class _SignupPageState extends State<SignupPage> {
                   textEditingController: usernameController, 
                   text: "Masukkan Nama", 
                   textInputType: TextInputType.name, 
-                  icon: Icon(Icons.person_outlined, color: ColorStyles.greyOutline,)
+                  icon: Icon(Icons.person_outlined, color: ColorStyles.greyText, size: 16,)
                 ),
                 SizedBox(height: 8),
                 Text(
@@ -73,7 +73,7 @@ class _SignupPageState extends State<SignupPage> {
                   textEditingController: emailController, 
                   text: "Masukkan Email", 
                   textInputType: TextInputType.emailAddress, 
-                  icon: Icon(Icons.email_outlined, color: ColorStyles.greyText,)
+                  icon: Icon(Icons.email_outlined, color: ColorStyles.greyText, size: 16,)
                 ),
                 SizedBox(height: 8,),
                 Text(

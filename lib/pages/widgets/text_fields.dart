@@ -35,10 +35,7 @@ class _TextFieldsState extends State<TextFields> {
         ),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(16),
-          prefixIcon: Icon(
-            Icons.email_outlined,
-            size: 16,
-          ),
+          prefixIcon: widget.icon,
           hintText: widget.text,
           hintStyle: TextStyle(
             color: ColorStyles.greyText,
