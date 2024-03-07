@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:includemy/styles/color_styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import './widgets/buttons.dart';
+import '../pages/login_page.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({Key? key}) : super(key: key);
@@ -33,7 +34,7 @@ class OnboardingPage extends StatelessWidget {
                 color: ColorStyles.white,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
               ),
-              height: MediaQuery.of(context).size.height / 2.6,
+              height: MediaQuery.of(context).size.height / 2.7,
               child: Padding(
                 padding: EdgeInsets.only(top: 24, bottom: 24, left: 16, right: 16),
                 child: Column(
@@ -57,7 +58,13 @@ class OnboardingPage extends StatelessWidget {
                     SizedBox(height: 32,),
                     Buttons(
                       text: "Masuk", 
-                      onClicked: (){}, 
+                      onClicked: (){
+                        Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                       LoginPage()));
+                      }, 
                       width: MediaQuery.of(context).size.width, 
                       backgroundColor: ColorStyles.primary.withOpacity(0.05), 
                       fontColor: ColorStyles.primary
@@ -65,7 +72,8 @@ class OnboardingPage extends StatelessWidget {
                     SizedBox(height: 12,),
                     Buttons(
                       text: "Buat Akun > ",
-                      onClicked: (){},
+                      onClicked: (){
+                      },
                       width: MediaQuery.of(context).size.width, 
                       backgroundColor: ColorStyles.primary,
                       fontColor: ColorStyles.white,)
