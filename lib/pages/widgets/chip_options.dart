@@ -38,9 +38,10 @@ class _ChipOptionsState extends State<ChipOptions> {
             child: Row(
               children: [
                 Container(
+                  padding: EdgeInsets.all(4),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
-                    color: _jobIndex == 0 ? ColorStyles.primary.withOpacity(0.05) : ColorStyles.white,
+                    color: _jobIndex == 0 ? ColorStyles.primary.withOpacity(0.05) : ColorStyles.white.withOpacity(0.05),
                   ),
                   child: Text(
                     widget.icon
@@ -59,8 +60,11 @@ class _ChipOptionsState extends State<ChipOptions> {
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: _jobIndex == 0 ? ColorStyles.white : ColorStyles.selectionBlack
-      ),
+            color: _jobIndex == 0 ? ColorStyles.white : ColorStyles.selectionBlack,
+            border: Border.all(
+              color: _jobIndex == 0 ? ColorStyles.greyOutline : ColorStyles.selectionBlack,
+            ),
+          ),
     );
   }
 }

@@ -6,6 +6,8 @@ import './widgets/text_fields.dart';
 import './widgets/segmented_options.dart';
 import './widgets/password_fields.dart';
 import './widgets/chip_options.dart';
+import './widgets/navigation_bar.dart';
+import './widgets/floating_btn.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -23,6 +25,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingBtn(),
+      bottomNavigationBar: NavigationBars(),
       body: Container(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -65,9 +70,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
               width: 343, 
               backgroundColor: Color.fromRGBO(19, 85, 255, 0.05), 
               fontColor: ColorStyles.primary,
+
               ),
             ]
+            
           ),
+          
         ),
       ),
     );
