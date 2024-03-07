@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 36),
+                SizedBox(height: 50),
                 SvgPicture.asset('assets/logo.svg'),
                 SizedBox(height: 16,),
                 Text(

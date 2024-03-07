@@ -22,7 +22,7 @@ class _SegmentedOptionState extends State<SegmentedOption> {
         color: ColorStyles.greyBg,
         borderRadius: BorderRadius.circular(8),
       ),
-      width: 343,
+      width: MediaQuery.of(context).size.width,
       height: 52,
       padding: EdgeInsets.all(8.0),
       child: Row(

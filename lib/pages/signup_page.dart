@@ -7,6 +7,7 @@ import './widgets/text_fields.dart';
 import './widgets/password_fields.dart';
 import './widgets/buttons.dart';
 import './login_page.dart';
+import '../pages/halaman_registrasi/pilih_golongan.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -37,7 +38,7 @@ class _SignupPageState extends State<SignupPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 36),
+                SizedBox(height: 50),
                 SvgPicture.asset('assets/logo.svg'),
                 SizedBox(height: 16,),
                 Text(
@@ -135,7 +136,9 @@ class _SignupPageState extends State<SignupPage> {
                 SizedBox(height: 34,),
                 Buttons(
                   text: "Isi Biodata", 
-                  onClicked: (){}, 
+                  onClicked: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const PilihGolonganPage()));
+                  }, 
                   width: MediaQuery.of(context).size.width, 
                   backgroundColor: ColorStyles.primary, 
                   fontColor: Colors.white,
