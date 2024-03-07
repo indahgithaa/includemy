@@ -24,7 +24,7 @@ class _TextFieldsState extends State<TextFields> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 343,
+      width: MediaQuery.of(context).size.width,
       height: 44,
       child: TextFormField(
         controller: widget.textEditingController,
