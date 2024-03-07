@@ -1,0 +1,53 @@
+ floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingBtn(),
+      bottomNavigationBar: NavigationBars(),
+      body: Container(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Email",
+                style: GoogleFonts.outfit(
+                  color: ColorStyles.greyText
+                ),
+              ),
+              TextFields(
+                textEditingController: usernameController, 
+                text: "Masukkan Email",
+                textInputType: TextInputType.name, 
+                icon: Icon(
+                  Icons.email_outlined,
+                  color: ColorStyles.greyText,
+                )
+              ),
+              SizedBox(height: 15,),
+              PasswordTextFields(passwordController: passwordController),
+              SizedBox(height: 15,),
+              Row(
+                children: [
+                  ChipOptions(
+                    icon: "💻",
+                    job: "Administrasi"
+                    )
+                ],
+              ),
+              SizedBox(height: 15,),
+              SegmentedOption(),
+              SizedBox(height: 15,),
+              Buttons(
+              text: "Daftar", 
+              onClicked: (){}, 
+              width: 343, 
+              backgroundColor: Color.fromRGBO(19, 85, 255, 0.05), 
+              fontColor: ColorStyles.primary,
+
+              ),
+            ]
+            
+          ),
+          
+        ),
+      ),

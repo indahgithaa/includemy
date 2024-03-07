@@ -20,7 +20,7 @@ class _MyFloatingBtnState extends State<FloatingBtn> {
         onPressed: () {},
         backgroundColor: ColorStyles.primary,
         elevation: 0.0,
-        child: SvgPicture.asset('assets/work.svg'),
+        child: SvgPicture.asset('assets/work.svg')
       ),
     );
   }

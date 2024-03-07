@@ -1,82 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import './widgets/buttons.dart';
-import '../styles/color_styles.dart';
-import './widgets/text_fields.dart';
-import './widgets/segmented_options.dart';
-import './widgets/password_fields.dart';
-import './widgets/chip_options.dart';
-import './widgets/navigation_bar.dart';
-import './widgets/floating_btn.dart';
+import 'package:includemy/styles/color_styles.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class OnboardingPage extends StatefulWidget {
-  const OnboardingPage({super.key});
-
-  @override
-  State<OnboardingPage> createState() => _OnboardingPageState();
-}
-
-class _OnboardingPageState extends State<OnboardingPage> {
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-
-  String _userDisability = "";
+class OnboardingPage extends StatelessWidget {
+  const OnboardingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingBtn(),
-      bottomNavigationBar: NavigationBars(),
-      body: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Email",
-                style: GoogleFonts.outfit(
-                  color: ColorStyles.greyText
+      body: Stack(
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height / 1.4,
+                  child: Image.asset('assets/Shot.png', fit: BoxFit.fill,),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            left: 0,
+            bottom: 0,
+            right: 0,
+            child: Container(
+              decoration: BoxDecoration(
+                color: ColorStyles.white,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+              ),
+              height: MediaQuery.of(context).size.height / 2.6,
+              child: Padding(
+                padding: EdgeInsets.only(top: 24, bottom: 24, left: 16, right: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Selamat Datang! 👋",
+                      style: GoogleFonts.outfit(
+                        fontSize: 32,
+                        fontWeight: FontWeight.w500
+                      ),
+                    ),
+                    SizedBox(height: 14,),
+                    Text(
+                      "Selamat datang di InclusiJob, sahabat disabilitas untuk prospek karir gemilang!",
+                      style: GoogleFonts.outfit(
+                        fontSize: 14,
+                        color: ColorStyles.greyText,
+                      ),
+                    )
+                  ],
                 ),
               ),
-              TextFields(
-                textEditingController: usernameController, 
-                text: "Masukkan Email",
-                textInputType: TextInputType.name, 
-                icon: Icon(
-                  Icons.email_outlined,
-                  color: ColorStyles.greyText,
-                )
-              ),
-              SizedBox(height: 15,),
-              PasswordTextFields(passwordController: passwordController),
-              SizedBox(height: 15,),
-              Row(
-                children: [
-                  ChipOptions(
-                    icon: "💻",
-                    job: "Administrasi"
-                    )
-                ],
-              ),
-              SizedBox(height: 15,),
-              SegmentedOption(),
-              SizedBox(height: 15,),
-              Buttons(
-              text: "Daftar", 
-              onClicked: (){}, 
-              width: 343, 
-              backgroundColor: Color.fromRGBO(19, 85, 255, 0.05), 
-              fontColor: ColorStyles.primary,
-
-              ),
-            ]
-            
-          ),
-          
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
