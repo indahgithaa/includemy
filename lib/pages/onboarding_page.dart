@@ -4,6 +4,7 @@ import 'package:includemy/styles/color_styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import './widgets/buttons.dart';
 import '../pages/login_page.dart';
+import '../pages/signup_page.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({Key? key}) : super(key: key);
@@ -73,6 +74,11 @@ class OnboardingPage extends StatelessWidget {
                     Buttons(
                       text: "Buat Akun > ",
                       onClicked: (){
+                         Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                       SignupPage()));
                       },
                       width: MediaQuery.of(context).size.width, 
                       backgroundColor: ColorStyles.primary,

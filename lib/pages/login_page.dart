@@ -6,6 +6,7 @@ import 'package:includemy/styles/color_styles.dart';
 import './widgets/text_fields.dart';
 import './widgets/password_fields.dart';
 import './widgets/buttons.dart';
+import './signup_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,7 +16,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool? rememberMe = false;
 
@@ -54,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 8,),
                 TextFields(
-                  textEditingController: usernameController, 
+                  textEditingController: emailController, 
                   text: "Masukkan Email", 
                   textInputType: TextInputType.emailAddress, 
                   icon: Icon(Icons.email_outlined, color: ColorStyles.greyText,)
@@ -225,7 +226,7 @@ class _LoginPageState extends State<LoginPage> {
                               color: ColorStyles.primary,
                               fontWeight: FontWeight.w500
                             ),
-                            recognizer: TapGestureRecognizer() ..onTap = () {},
+                            recognizer: TapGestureRecognizer() ..onTap = () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignupPage())),
                           )
                         ]
                       )
