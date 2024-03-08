@@ -31,9 +31,9 @@ class _ChipOptionsState extends State<ChipOptions> {
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: _isSelected ? ColorStyles.white : ColorStyles.selectionBlack,
+        color: _isSelected ? ColorStyles.selectionBlack : ColorStyles.white,
         border: Border.all(
-          color: _isSelected ? ColorStyles.greyOutline : ColorStyles.selectionBlack,
+          color: _isSelected ? ColorStyles.selectionBlack : ColorStyles.greyOutline,
         ),
       ),
       child: GestureDetector(
@@ -49,7 +49,7 @@ class _ChipOptionsState extends State<ChipOptions> {
               padding: EdgeInsets.all(4),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
-                color: _isSelected ? ColorStyles.primary.withOpacity(0.05) : ColorStyles.white.withOpacity(0.05),
+                color: _isSelected ? ColorStyles.white.withOpacity(0.16) : ColorStyles.primary.withOpacity(0.05),
               ),
               child: Text(
                 widget.icon,
@@ -60,7 +60,7 @@ class _ChipOptionsState extends State<ChipOptions> {
               widget.job,
               style: GoogleFonts.outfit(
                 fontSize: 14,
-                color: _isSelected ? ColorStyles.black : ColorStyles.white,
+                color: _isSelected ? ColorStyles.white : ColorStyles.black,
               ),
             ),
           ],

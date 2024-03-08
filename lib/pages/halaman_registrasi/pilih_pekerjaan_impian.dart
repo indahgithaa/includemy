@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:includemy/styles/color_styles.dart';
 import '../widgets/chip_options.dart';
+import '../widgets/buttons.dart';
 
 class DreamJobsPage extends StatefulWidget {
   const DreamJobsPage({super.key});
@@ -56,7 +57,7 @@ class _DreamJobsPageState extends State<DreamJobsPage> {
             ),
             SizedBox(height: 32,),
             Container(
-              height: 300,
+              height: 368,
               width: 400,
               child: Wrap(
                 direction: Axis.horizontal,
@@ -69,6 +70,21 @@ class _DreamJobsPageState extends State<DreamJobsPage> {
                     jobList.length,
                     (index) => ChipOptions(icon: jobList[index][0], job: jobList[index][1]),
                   ),
+              ),
+            ),
+            SizedBox(height: 51,),
+            Expanded(    
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Buttons(
+                  text: "Isi Biodata", 
+                  onClicked: (){
+                    //Navigator.push(context, MaterialPageRoute(builder: (context) => DreamJobsPage()));
+                  }, 
+                  width: MediaQuery.of(context).size.width, 
+                  backgroundColor: ColorStyles.primary, 
+                  fontColor: ColorStyles.white
+                ),
               ),
             ),
           ],
