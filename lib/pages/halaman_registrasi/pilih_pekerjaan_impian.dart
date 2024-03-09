@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:includemy/styles/color_styles.dart';
 import '../widgets/chip_options.dart';
 import '../widgets/buttons.dart';
+import './pilih_tanggal_lahir.dart';
 
 class DreamJobsPage extends StatefulWidget {
   const DreamJobsPage({super.key});
@@ -79,7 +80,7 @@ class _DreamJobsPageState extends State<DreamJobsPage> {
                 child: Buttons(
                   text: "Isi Biodata", 
                   onClicked: (){
-                    //Navigator.push(context, MaterialPageRoute(builder: (context) => DreamJobsPage()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => PilihTanggalLahirPage()));
                   }, 
                   width: MediaQuery.of(context).size.width, 
                   backgroundColor: ColorStyles.primary, 
