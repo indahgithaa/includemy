@@ -8,6 +8,7 @@ import '../widgets/password_fields.dart';
 import '../widgets/buttons.dart';
 import '../widgets/pageViewIndicator.dart';
 import './pilih_tanggal_lahir.dart';
+import './nomor_hp.dart';
 
 class PilihPekerjaanTerakhir extends StatefulWidget {
   const PilihPekerjaanTerakhir({super.key});
@@ -148,7 +149,9 @@ class _PilihPekerjaanTerakhirState extends State<PilihPekerjaanTerakhir> {
                 SizedBox(height: 34,),
                 Buttons(
                   text: "Selanjutnya", 
-                  onClicked: (){}, 
+                  onClicked: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => MasukkanNomorHpPage()));
+                  }, 
                   width: MediaQuery.of(context).size.width, 
                   backgroundColor: ColorStyles.primary, 
                   fontColor: Colors.white,
