@@ -8,6 +8,7 @@ import '../widgets/password_fields.dart';
 import '../widgets/buttons.dart';
 import '../widgets/pageViewIndicator.dart';
 import './pilih_pekerjaan_terakhir.dart';
+import './verifikasi_berhasil.dart';
 
 class MasukkanNomorHpPage extends StatefulWidget {
   const MasukkanNomorHpPage({super.key});
@@ -56,7 +57,7 @@ class _MasukkanNomorHPPage extends State<MasukkanNomorHpPage> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
-                      color: ColorStyles.greyOutline, // Focused border color
+                      color: ColorStyles.greyOutline, 
                     ),
                   ),
                   height: 44,
@@ -98,6 +99,7 @@ class _MasukkanNomorHPPage extends State<MasukkanNomorHpPage> {
                 Buttons(
                   text: "Selanjutnya", 
                   onClicked: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => FinishedVerification()));
                   }, 
                   width: MediaQuery.of(context).size.width, 
                   backgroundColor: ColorStyles.primary, 
