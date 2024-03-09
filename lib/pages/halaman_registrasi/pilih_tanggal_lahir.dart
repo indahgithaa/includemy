@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:includemy/pages/halaman_registrasi/pilih_pekerjaan_impian.dart';
 import 'package:includemy/styles/color_styles.dart';
 import '../widgets/text_fields.dart';
 import '../widgets/password_fields.dart';
@@ -111,7 +112,24 @@ class _PilihTanggalLshirPageState extends State<PilihTanggalLahirPage> {
                 Buttons(
                   text: "Selanjutnya", 
                   onClicked: (){
-                     Navigator.push(context, MaterialPageRoute(builder: (context) => PilihPekerjaanTerakhir()));
+                     Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: Duration(milliseconds: 300),
+                        transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+                          return SlideTransition(
+                            position: Tween<Offset>(
+                              begin: const Offset(1.0, 0.0),
+                              end: Offset.zero,
+                            ).animate(animation),
+                            child: child,
+                          );
+                        },
+                        pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+                          return PilihPekerjaanTerakhir();
+                        },
+                      ),
+                    );
                   }, 
                   width: MediaQuery.of(context).size.width, 
                   backgroundColor: ColorStyles.primary, 
@@ -119,7 +137,26 @@ class _PilihTanggalLshirPageState extends State<PilihTanggalLahirPage> {
                 ),
                 Buttons(
                   text: "< Sebelumnya", 
-                  onClicked: (){}, 
+                  onClicked: (){
+                    Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: Duration(milliseconds: 200),
+                        transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+                          return SlideTransition(
+                            position: Tween<Offset>(
+                              begin: const Offset(-1.0, 0.0),
+                              end: Offset.zero,
+                            ).animate(animation),
+                            child: child,
+                          );
+                        },
+                        pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+                          return DreamJobsPage();
+                        },
+                      ),
+                    );
+                  },
                   width: MediaQuery.of(context).size.width, 
                   backgroundColor: ColorStyles.white, 
                   fontColor: ColorStyles.greyText,

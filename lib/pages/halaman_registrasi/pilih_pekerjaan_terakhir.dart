@@ -150,7 +150,24 @@ class _PilihPekerjaanTerakhirState extends State<PilihPekerjaanTerakhir> {
                 Buttons(
                   text: "Selanjutnya", 
                   onClicked: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => MasukkanNomorHpPage()));
+                    Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: Duration(milliseconds: 300),
+                        transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+                          return SlideTransition(
+                            position: Tween<Offset>(
+                              begin: const Offset(1.0, 0.0),
+                              end: Offset.zero,
+                            ).animate(animation),
+                            child: child,
+                          );
+                        },
+                        pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+                          return MasukkanNomorHpPage();
+                        },
+                      ),
+                    );
                   }, 
                   width: MediaQuery.of(context).size.width, 
                   backgroundColor: ColorStyles.primary, 
@@ -158,7 +175,26 @@ class _PilihPekerjaanTerakhirState extends State<PilihPekerjaanTerakhir> {
                 ),
                 Buttons(
                   text: "< Sebelumnya", 
-                  onClicked: (){}, 
+                  onClicked: (){
+                    Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: Duration(milliseconds: 200),
+                        transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+                          return SlideTransition(
+                            position: Tween<Offset>(
+                              begin: const Offset(-1.0, 0.0),
+                              end: Offset.zero,
+                            ).animate(animation),
+                            child: child,
+                          );
+                        },
+                        pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+                          return PilihTanggalLahirPage();
+                        },
+                      ),
+                    );
+                  }, 
                   width: MediaQuery.of(context).size.width, 
                   backgroundColor: ColorStyles.white, 
                   fontColor: ColorStyles.greyText,

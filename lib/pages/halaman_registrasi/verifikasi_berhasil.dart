@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:includemy/styles/color_styles.dart';
 import '../widgets/buttons.dart';
+import '../login_page.dart';
 
 class FinishedVerification extends StatelessWidget {
   const FinishedVerification({super.key});
@@ -41,7 +42,9 @@ class FinishedVerification extends StatelessWidget {
             SizedBox(height: 60,),
             Buttons(
               text: "Masuk", 
-              onClicked: (){}, 
+              onClicked: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+              }, 
               width: MediaQuery.of(context).size.width, 
               backgroundColor: ColorStyles.primary, 
               fontColor: ColorStyles.white

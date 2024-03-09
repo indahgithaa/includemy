@@ -80,8 +80,25 @@ class _DreamJobsPageState extends State<DreamJobsPage> {
                 child: Buttons(
                   text: "Isi Biodata", 
                   onClicked: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => PilihTanggalLahirPage()));
-                  }, 
+                    Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: Duration(milliseconds: 300),
+                        transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+                          return SlideTransition(
+                            position: Tween<Offset>(
+                              begin: const Offset(1.0, 0.0),
+                              end: Offset.zero,
+                            ).animate(animation),
+                            child: child,
+                          );
+                        },
+                        pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+                          return PilihTanggalLahirPage();
+                        },
+                      ),
+                    );
+                  },
                   width: MediaQuery.of(context).size.width, 
                   backgroundColor: ColorStyles.primary, 
                   fontColor: ColorStyles.white

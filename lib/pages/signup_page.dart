@@ -136,9 +136,26 @@ class _SignupPageState extends State<SignupPage> {
                 SizedBox(height: 34,),
                 Buttons(
                   text: "Isi Biodata", 
-                  onClicked: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const PilihGolonganPage()));
-                  }, 
+                  onClicked: () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: Duration(milliseconds: 300),
+                        transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+                          return SlideTransition(
+                            position: Tween<Offset>(
+                              begin: const Offset(1.0, 0.0),
+                              end: Offset.zero,
+                            ).animate(animation),
+                            child: child,
+                          );
+                        },
+                        pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+                          return PilihGolonganPage();
+                        },
+                      ),
+                    );
+                  },
                   width: MediaQuery.of(context).size.width, 
                   backgroundColor: ColorStyles.primary, 
                   fontColor: Colors.white,
