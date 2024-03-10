@@ -7,6 +7,7 @@ import './widgets/text_fields.dart';
 import './widgets/password_fields.dart';
 import './widgets/buttons.dart';
 import './signup_page.dart';
+import './home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -119,7 +120,13 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 34,),
                 Buttons(
                   text: "Masuk", 
-                  onClicked: (){}, 
+                  onClicked: (){
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                          HomePage()));
+                  }, 
                   width: MediaQuery.of(context).size.width, 
                   backgroundColor: ColorStyles.primary, 
                   fontColor: Colors.white,
