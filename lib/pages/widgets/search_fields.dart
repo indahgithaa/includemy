@@ -25,15 +25,16 @@ class _SearchBarsState extends State<SearchBars> {
               height: 48,
               width: MediaQuery.of(context).size.width,
               child: SearchBar(
+                textStyle: MaterialStateProperty.all(GoogleFonts.outfit(color: ColorStyles.greyText, fontSize: 14)),
                 leading: Icon(Icons.search, color: ColorStyles.greyText),
                 hintText: "Cari sesuatu di sini ...",
                 backgroundColor: MaterialStateProperty.all(ColorStyles.greyBg),
                 elevation: MaterialStateProperty.all(0),
                 shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0),
+                  borderRadius: BorderRadius.circular(8),
                 )),
                 hintStyle: MaterialStateProperty.all(
-                  GoogleFonts.poppins(
+                  GoogleFonts.outfit(
                     color: ColorStyles.greyText,
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
