@@ -56,6 +56,11 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
+            SvgPicture.asset(
+              'assets/notification.svg',
+              width: 24,
+              height: 24,
+            ),
           ],
         ),
       ),
@@ -68,13 +73,13 @@ class _HomePageState extends State<HomePage> {
           children: [
             SizedBox(height: 16,),
             SearchBars(),
-            SizedBox(height: 16),
+            SizedBox(height: 32),
             // Carousel
             Stack(
               alignment: Alignment.bottomCenter,
               children: [
                 Container(
-                  height: 200,
+                  height: 140.0,
                   child: PageView(
                     controller: _pageController,
                     onPageChanged: (value) {
@@ -100,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 // Page indicator
                 Positioned(
-                  bottom: 40.0,
+                  bottom: 10.0,
                   child: Container(
                     child: Row (
                       mainAxisAlignment: MainAxisAlignment.center,
