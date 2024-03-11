@@ -2,27 +2,28 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:includemy/styles/color_styles.dart';
+import 'package:includemy/app/styles/color_styles.dart';
 import './widgets/text_fields.dart';
 import './widgets/password_fields.dart';
 import './widgets/buttons.dart';
-import './signup_page.dart';
-import './home_page.dart';
+import './login_page.dart';
+import '../pages/halaman_registrasi/pilih_golongan.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignupPageState extends State<SignupPage> {
+  TextEditingController usernameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  bool? rememberMe = false;
+  bool? setujuKetentuan = false;
 
-  void toggleRememberMe(bool? newValue) => setState(() {
-    rememberMe = newValue;
+  void toggleSetujuKetentuan(bool? newValue) => setState(() {
+    setujuKetentuan = newValue;
   });
 
   @override
@@ -41,13 +42,27 @@ class _LoginPageState extends State<LoginPage> {
                 SvgPicture.asset('assets/logo.svg'),
                 SizedBox(height: 16,),
                 Text(
-                  "Silahkan masuk menggunakan Email dan Password.",
+                  "Silahkan daftar menggunakan Email dan Password.",
                   style: GoogleFonts.outfit(
                     fontSize: 14,
                     color: ColorStyles.greyText,
                   ),
                 ),
                 SizedBox(height: 32,),
+                Text(
+                  "Nama",
+                  style: GoogleFonts.outfit(
+                    fontSize: 14,
+                  ),
+                ),
+                SizedBox(height: 8,),
+                TextFields(
+                  textEditingController: usernameController, 
+                  text: "Masukkan Nama", 
+                  textInputType: TextInputType.name, 
+                  icon: Icon(Icons.person_outlined, color: ColorStyles.greyText, size: 16,)
+                ),
+                SizedBox(height: 8),
                 Text(
                   "Email",
                   style: GoogleFonts.outfit(
@@ -59,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                   textEditingController: emailController, 
                   text: "Masukkan Email", 
                   textInputType: TextInputType.emailAddress, 
-                  icon: Icon(Icons.email_outlined, color: ColorStyles.greyText,)
+                  icon: Icon(Icons.email_outlined, color: ColorStyles.greyText, size: 16,)
                 ),
                 SizedBox(height: 8,),
                 Text(
@@ -74,59 +89,73 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 16,),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: 16,
-                          height: 16,
-                          child: Checkbox(
-                            value: rememberMe, 
-                            onChanged: (value) {
-                              setState(() {
-                                toggleRememberMe(value);
-                              });
-                            },
-                            activeColor: ColorStyles.primary,
-                            checkColor: ColorStyles.white,
-                            side: BorderSide(
-                              color: ColorStyles.greyOutline,
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 16,),
-                        Text(
-                          "Ingat akun",
-                          style: GoogleFonts.outfit(
-                            fontSize: 12,
-                          ),
-                        )
-                      ]
-                    ),
-                    GestureDetector(
-                      onTap: (){},
-                      child: Text(
-                        "Lupa Password?",
-                        style: GoogleFonts.outfit(
-                          fontSize: 12,
-                          color: ColorStyles.primary
+                    SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: Checkbox(
+                        value: setujuKetentuan, 
+                        onChanged: (value) {
+                          setState(() {
+                            toggleSetujuKetentuan(value);
+                          });
+                        },
+                        activeColor: ColorStyles.primary,
+                        checkColor: ColorStyles.white,
+                        side: BorderSide(
+                          color: ColorStyles.greyOutline,
                         ),
                       ),
+                    ),
+                    SizedBox(width: 8,),
+                    RichText(
+                      text: TextSpan(
+                        text: "Setuju dengan",
+                        style: GoogleFonts.outfit(
+                          color: ColorStyles.black,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: " ketentuan",
+                            style: GoogleFonts.outfit(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: ColorStyles.primary,
+                              decoration: TextDecoration.underline,
+                              decorationColor: ColorStyles.primary,
+                            )
+                          )
+                        ]
+                      )
                     )
                   ]
                 ),
                 SizedBox(height: 34,),
                 Buttons(
-                  text: "Masuk", 
-                  onClicked: (){
-                    Navigator.pushReplacement(
+                  text: "Isi Biodata", 
+                  onClicked: () {
+                    Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                          HomePage()));
-                  }, 
+                      PageRouteBuilder(
+                        transitionDuration: Duration(milliseconds: 300),
+                        transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+                          return SlideTransition(
+                            position: Tween<Offset>(
+                              begin: const Offset(1.0, 0.0),
+                              end: Offset.zero,
+                            ).animate(animation),
+                            child: child,
+                          );
+                        },
+                        pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+                          return PilihGolonganPage();
+                        },
+                      ),
+                    );
+                  },
                   width: MediaQuery.of(context).size.width, 
                   backgroundColor: ColorStyles.primary, 
                   fontColor: Colors.white,
@@ -221,19 +250,19 @@ class _LoginPageState extends State<LoginPage> {
                     alignment: Alignment.bottomLeft,
                     child: RichText(
                       text: TextSpan(
-                        text: "Belum memiliki akun? ",
+                        text: "Sudah memiliki akun? ",
                         style: GoogleFonts.outfit(
                           color: ColorStyles.greyText,
                           fontSize: 14
                         ),
                         children: [
                           TextSpan(
-                            text: "Buat Akun",
+                            text: "Masuk",
                             style: GoogleFonts.outfit(
                               color: ColorStyles.primary,
                               fontWeight: FontWeight.w500
                             ),
-                            recognizer: TapGestureRecognizer() ..onTap = () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignupPage())),
+                            recognizer: TapGestureRecognizer() ..onTap = () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage())),
                           )
                         ]
                       )

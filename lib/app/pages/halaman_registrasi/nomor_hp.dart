@@ -2,23 +2,23 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:includemy/pages/halaman_registrasi/pilih_pekerjaan_impian.dart';
-import 'package:includemy/styles/color_styles.dart';
+import 'package:includemy/app/styles/color_styles.dart';
 import '../widgets/text_fields.dart';
 import '../widgets/password_fields.dart';
 import '../widgets/buttons.dart';
 import '../widgets/pageViewIndicator.dart';
 import './pilih_pekerjaan_terakhir.dart';
+import './verifikasi_berhasil.dart';
 
-class PilihTanggalLahirPage extends StatefulWidget {
-  const PilihTanggalLahirPage({super.key});
+class MasukkanNomorHpPage extends StatefulWidget {
+  const MasukkanNomorHpPage({super.key});
 
   @override
-  State<PilihTanggalLahirPage> createState() => _PilihTanggalLshirPageState();
+  State<MasukkanNomorHpPage> createState() => _MasukkanNomorHPPage();
 }
 
-class _PilihTanggalLshirPageState extends State<PilihTanggalLahirPage> {
-  TextEditingController birthDateController = TextEditingController();
+class _MasukkanNomorHPPage extends State<MasukkanNomorHpPage> {
+  TextEditingController phoneNumberController = TextEditingController();
   String? _selectedGender;
   List<String> genders = ["Perempuan", "Laki-laki"];
 
@@ -38,7 +38,7 @@ class _PilihTanggalLshirPageState extends State<PilihTanggalLahirPage> {
                 SvgPicture.asset('assets/logo.svg'),
                 SizedBox(height: 16,),
                 Text(
-                  "Silahkan mengisi Tanggal Lahir dan Jenis Kelamin.",
+                  "Silahkan mengisi Nomor HP aktif.",
                   style: GoogleFonts.outfit(
                     fontSize: 14,
                     color: ColorStyles.greyText,
@@ -46,73 +46,60 @@ class _PilihTanggalLshirPageState extends State<PilihTanggalLahirPage> {
                 ),
                 SizedBox(height: 32,),
                 Text(
-                  "Tanggal Lahir",
-                  style: GoogleFonts.outfit(
-                    fontSize: 14,
-                  ),
-                ),
-                SizedBox(height: 8,),
-                TextFields(
-                  textEditingController: birthDateController, 
-                  text: "DD / MM / YY", 
-                  textInputType: TextInputType.datetime, 
-                  icon: Icon(Icons.calendar_today_outlined, color: ColorStyles.greyText, size: 16,)
-                ),
-                SizedBox(height: 8,),
-                Text(
-                  "Jenis Kelamin",
+                  "Nomor HP",
                   style: GoogleFonts.outfit(
                     fontSize: 14,
                   ),
                 ),
                 SizedBox(height: 8,),
                 Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: ColorStyles.greyOutline),
-                    borderRadius: BorderRadius.circular(8)
-                  ),
                   padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
+                      color: ColorStyles.greyOutline, 
+                    ),
+                  ),
                   height: 44,
-                  child: Row(
-                    children: [
-                      Icon(
-                        _selectedGender == "Perempuan" ? Icons.female : _selectedGender == "Laki-laki" ? Icons.male : Icons.male,
-                        color: ColorStyles.greyText,
-                      ),
-                      SizedBox(width:10),
-                      Expanded(
-                        child: DropdownButton<String>(
-                        hint: Text("Pilih Jenis Kelamin"),
-                        items: genders.map((String gender) {
-                          return DropdownMenuItem<String>(
-                            value: gender,
-                            child: Text(gender),
-                          );
-                        }).toList(),
-                        value: _selectedGender,
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            _selectedGender = newValue;
-                          });
-                        },
-                        isExpanded: true, 
-                        style: GoogleFonts.outfit(
-                          fontSize: 14,
-                          color: ColorStyles.greyText,
-                        ), 
-                        underline: Container(), 
-                        itemHeight: kMinInteractiveDimension,
-                                            ),
-                      ),
-                    ],
+                  width: MediaQuery.of(context).size.width,
+                  child: Center(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(Icons.phone),
+                        SizedBox(width: 8,),
+                        Text('+62', style: GoogleFonts.outfit(fontSize: 14, color: ColorStyles.greyText),),
+                        SizedBox(width: 8,),
+                        Expanded(
+                          child: TextFormField(
+                            style: GoogleFonts.outfit(
+                              fontSize: 14,
+                              color: ColorStyles.greyText
+                            ),
+                            textAlignVertical: TextAlignVertical.center,
+                            controller: phoneNumberController,
+                            keyboardType: TextInputType.phone,
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.all(4),
+                              isCollapsed: true,
+                              hintText: ('- 00000 - 00000'),
+                              hintStyle: TextStyle(
+                                color: ColorStyles.greyText,
+                              ),
+                              enabledBorder: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                            ),
+                          ),
+                        )
+                      ]
+                    ),
                   ),
                 ),
-                SizedBox(height: 16,),
                 SizedBox(height: 34,),
                 Buttons(
                   text: "Selanjutnya", 
                   onClicked: (){
-                     Navigator.pushReplacement(
+                    Navigator.push(
                       context,
                       PageRouteBuilder(
                         transitionDuration: Duration(milliseconds: 300),
@@ -126,7 +113,7 @@ class _PilihTanggalLshirPageState extends State<PilihTanggalLahirPage> {
                           );
                         },
                         pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-                          return PilihPekerjaanTerakhir();
+                          return FinishedVerification();
                         },
                       ),
                     );
@@ -137,26 +124,7 @@ class _PilihTanggalLshirPageState extends State<PilihTanggalLahirPage> {
                 ),
                 Buttons(
                   text: "< Sebelumnya", 
-                  onClicked: (){
-                    Navigator.pushReplacement(
-                      context,
-                      PageRouteBuilder(
-                        transitionDuration: Duration(milliseconds: 200),
-                        transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-                          return SlideTransition(
-                            position: Tween<Offset>(
-                              begin: const Offset(-1.0, 0.0),
-                              end: Offset.zero,
-                            ).animate(animation),
-                            child: child,
-                          );
-                        },
-                        pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-                          return DreamJobsPage();
-                        },
-                      ),
-                    );
-                  },
+                  onClicked: (){}, 
                   width: MediaQuery.of(context).size.width, 
                   backgroundColor: ColorStyles.white, 
                   fontColor: ColorStyles.greyText,
@@ -169,8 +137,8 @@ class _PilihTanggalLshirPageState extends State<PilihTanggalLahirPage> {
                   children: [
                     PageViewIndicators(
                       indicator1: ColorStyles.selectionBlack, 
-                      indicator2: ColorStyles.greyBg, 
-                      indicator3: ColorStyles.greyBg
+                      indicator2: ColorStyles.selectionBlack, 
+                      indicator3: ColorStyles.selectionBlack,
                     ),
                     SizedBox(height: 24),
                     RichText(

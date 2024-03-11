@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:includemy/styles/color_styles.dart';
+import 'package:includemy/app/styles/color_styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import './widgets/search_fields.dart';
 import './widgets/navigation_bar.dart';
@@ -16,8 +16,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-    int _currentPage = 0;
-    final _pageController = PageController();
+  int _currentPage = 0;
+  final _pageController = PageController();
+
+  List<List<String>> pekerjaanList = [
+   ["assets/job-img1.svg", "Staff Marketing Operational", "InkSpace", "Malang, Jawa Timur", "2.000k", "Full Time", "Tuna Daksa", "2hr ago"],
+   ["assets/job-img1.svg", "Staff Marketing Operational", "InkSpace", "Malang, Jawa Timur", "2.000k", "Full Time", "Tuna Daksa", "2hr ago"],
+   ["assets/job-img1.svg", "Staff Marketing Operational", "InkSpace", "Malang, Jawa Timur", "2.000k", "Full Time", "Tuna Daksa", "2hr ago"],
+   ["assets/job-img1.svg", "Staff Marketing Operational", "InkSpace", "Malang, Jawa Timur", "2.000k", "Full Time", "Tuna Daksa", "2hr ago"],
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -158,22 +165,29 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             SizedBox(height: 16),
-            PekerjaanCards(
-              jobImage: 'assets/job-img1.svg', 
-              jobTitle: 'Staff Marketing Operational', 
-              companyName: 'InkSpace', 
-              location: 'Malang, Jawa Timur', 
-              salary: '2.000k', 
-              jobType: 'Full Time', 
-              disabilitasType: 'Tuna Daksa', 
-              updatedAt: '2hr ago',
-            ),
+            Container(
+              height: 155,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemCount: pekerjaanList.length,
+                separatorBuilder: (context, index) => SizedBox(width: 12),
+                itemBuilder: (context, index) {
+                  return PekerjaanCards(
+                    jobImage: pekerjaanList[index][0],
+                    jobTitle: pekerjaanList[index][1],
+                    companyName: pekerjaanList[index][2],
+                    location: pekerjaanList[index][3],
+                    salary: pekerjaanList[index][4],
+                    jobType: pekerjaanList[index][5],
+                    disabilitasType: pekerjaanList[index][6],
+                    updatedAt: pekerjaanList[index][7],
+                  );
+                },
+              ),
+            )
           ]
         ),
       ),
-      bottomNavigationBar: NavigationBars(),
-      floatingActionButton: FloatingBtn(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 

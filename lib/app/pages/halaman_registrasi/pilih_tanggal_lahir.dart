@@ -2,26 +2,25 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:includemy/styles/color_styles.dart';
+import 'package:includemy/app/pages/halaman_registrasi/pilih_pekerjaan_impian.dart';
+import 'package:includemy/app/styles/color_styles.dart';
 import '../widgets/text_fields.dart';
 import '../widgets/password_fields.dart';
 import '../widgets/buttons.dart';
 import '../widgets/pageViewIndicator.dart';
-import './pilih_tanggal_lahir.dart';
-import './nomor_hp.dart';
+import './pilih_pekerjaan_terakhir.dart';
 
-class PilihPekerjaanTerakhir extends StatefulWidget {
-  const PilihPekerjaanTerakhir({super.key});
+class PilihTanggalLahirPage extends StatefulWidget {
+  const PilihTanggalLahirPage({super.key});
 
   @override
-  State<PilihPekerjaanTerakhir> createState() => _PilihPekerjaanTerakhirState();
+  State<PilihTanggalLahirPage> createState() => _PilihTanggalLshirPageState();
 }
 
-class _PilihPekerjaanTerakhirState extends State<PilihPekerjaanTerakhir> {
-  String? _pekerjaanTerakhir;
-  String? _pendidikanTerakhir;
-  List<String> pekerjaans = ["Karyawan Swasta", "Pegawai Negeri"];
-  List<String> pendidikans = ["Tidak sekolah","SD/Sederajat", "SMP/Sederajat", "SMA/SMK/Sederajat", "D1", "D3", "D4/S1", "S2", "S3"];
+class _PilihTanggalLshirPageState extends State<PilihTanggalLahirPage> {
+  TextEditingController birthDateController = TextEditingController();
+  String? _selectedGender;
+  List<String> genders = ["Perempuan", "Laki-laki"];
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +38,7 @@ class _PilihPekerjaanTerakhirState extends State<PilihPekerjaanTerakhir> {
                 SvgPicture.asset('assets/logo.svg'),
                 SizedBox(height: 16,),
                 Text(
-                  "Silahkan mengisi Pekerjaan dan Pendidikan Terakhir.",
+                  "Silahkan mengisi Tanggal Lahir dan Jenis Kelamin.",
                   style: GoogleFonts.outfit(
                     fontSize: 14,
                     color: ColorStyles.greyText,
@@ -47,57 +46,21 @@ class _PilihPekerjaanTerakhirState extends State<PilihPekerjaanTerakhir> {
                 ),
                 SizedBox(height: 32,),
                 Text(
-                  "Pekerjaan Terakhir",
+                  "Tanggal Lahir",
                   style: GoogleFonts.outfit(
                     fontSize: 14,
                   ),
                 ),
                 SizedBox(height: 8,),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: ColorStyles.greyOutline),
-                    borderRadius: BorderRadius.circular(8)
-                  ),
-                  padding: EdgeInsets.all(8),
-                  height: 44,
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.work_outline_outlined,
-                        size: 16,
-                        color: ColorStyles.greyText,
-                      ),
-                      SizedBox(width:10),
-                      Expanded(
-                        child: DropdownButton<String>(
-                        hint: Text("Pilih Pekerjaan"),
-                        items: pekerjaans.map((String pekerjaan) {
-                          return DropdownMenuItem<String>(
-                            value: pekerjaan,
-                            child: Text(pekerjaan),
-                          );
-                        }).toList(),
-                        value: _pekerjaanTerakhir,
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            _pekerjaanTerakhir = newValue;
-                          });
-                        },
-                        isExpanded: true, 
-                        style: GoogleFonts.outfit(
-                          fontSize: 14,
-                          color: ColorStyles.greyText,
-                        ), 
-                        underline: Container(), 
-                        itemHeight: kMinInteractiveDimension,
-                        ),
-                      ),
-                    ],
-                  ),
+                TextFields(
+                  textEditingController: birthDateController, 
+                  text: "DD / MM / YY", 
+                  textInputType: TextInputType.datetime, 
+                  icon: Icon(Icons.calendar_today_outlined, color: ColorStyles.greyText, size: 16,)
                 ),
                 SizedBox(height: 8,),
                 Text(
-                  "Pendidikan Terakhir",
+                  "Jenis Kelamin",
                   style: GoogleFonts.outfit(
                     fontSize: 14,
                   ),
@@ -113,24 +76,23 @@ class _PilihPekerjaanTerakhirState extends State<PilihPekerjaanTerakhir> {
                   child: Row(
                     children: [
                       Icon(
-                        Icons.school_outlined,
-                        size: 16,
+                        _selectedGender == "Perempuan" ? Icons.female : _selectedGender == "Laki-laki" ? Icons.male : Icons.male,
                         color: ColorStyles.greyText,
                       ),
                       SizedBox(width:10),
                       Expanded(
                         child: DropdownButton<String>(
-                        hint: Text("Pilih Pendidikan"),
-                        items: pendidikans.map((String pendidikan) {
+                        hint: Text("Pilih Jenis Kelamin"),
+                        items: genders.map((String gender) {
                           return DropdownMenuItem<String>(
-                            value: pendidikan,
-                            child: Text(pendidikan),
+                            value: gender,
+                            child: Text(gender),
                           );
                         }).toList(),
-                        value: _pendidikanTerakhir,
+                        value: _selectedGender,
                         onChanged: (String? newValue) {
                           setState(() {
-                            _pendidikanTerakhir = newValue;
+                            _selectedGender = newValue;
                           });
                         },
                         isExpanded: true, 
@@ -140,7 +102,7 @@ class _PilihPekerjaanTerakhirState extends State<PilihPekerjaanTerakhir> {
                         ), 
                         underline: Container(), 
                         itemHeight: kMinInteractiveDimension,
-                        ),
+                                            ),
                       ),
                     ],
                   ),
@@ -150,7 +112,7 @@ class _PilihPekerjaanTerakhirState extends State<PilihPekerjaanTerakhir> {
                 Buttons(
                   text: "Selanjutnya", 
                   onClicked: (){
-                    Navigator.pushReplacement(
+                     Navigator.pushReplacement(
                       context,
                       PageRouteBuilder(
                         transitionDuration: Duration(milliseconds: 300),
@@ -164,7 +126,7 @@ class _PilihPekerjaanTerakhirState extends State<PilihPekerjaanTerakhir> {
                           );
                         },
                         pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-                          return MasukkanNomorHpPage();
+                          return PilihPekerjaanTerakhir();
                         },
                       ),
                     );
@@ -190,11 +152,11 @@ class _PilihPekerjaanTerakhirState extends State<PilihPekerjaanTerakhir> {
                           );
                         },
                         pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-                          return PilihTanggalLahirPage();
+                          return DreamJobsPage();
                         },
                       ),
                     );
-                  }, 
+                  },
                   width: MediaQuery.of(context).size.width, 
                   backgroundColor: ColorStyles.white, 
                   fontColor: ColorStyles.greyText,
@@ -207,7 +169,7 @@ class _PilihPekerjaanTerakhirState extends State<PilihPekerjaanTerakhir> {
                   children: [
                     PageViewIndicators(
                       indicator1: ColorStyles.selectionBlack, 
-                      indicator2: ColorStyles.selectionBlack, 
+                      indicator2: ColorStyles.greyBg, 
                       indicator3: ColorStyles.greyBg
                     ),
                     SizedBox(height: 24),

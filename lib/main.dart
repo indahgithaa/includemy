@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import './pages/onboarding_page.dart';
-import './pages/splash_page.dart';
+import './app/pages/onboarding_page.dart';
+import './app/pages/splash_page.dart';
 
 void main() {
   runApp(const MyApp());
