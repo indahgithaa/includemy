@@ -29,163 +29,250 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: ColorStyles.white,
-        centerTitle: false,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                SvgPicture.asset(
-                  'assets/profile-default.svg',
-                  width: 44,
-                  height: 44, 
-                ),
-                SizedBox(width: 8),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+      body: SingleChildScrollView(
+        child: Container(
+          decoration: BoxDecoration(
+            color: ColorStyles.white,
+          ),
+          child: Column(
+            children: [
+              SizedBox(height: 50,),
+               Padding(
+                 padding: const EdgeInsets.symmetric(horizontal: 16),
+                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "Hai, ${"username"}!",
-                      style: GoogleFonts.outfit(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
+                    Row(
+                      children: [
+                        SvgPicture.asset(
+                          'assets/profile-default.svg',
+                          width: 44,
+                          height: 44, 
+                        ),
+                        SizedBox(width: 8),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Hai, ${"username"}!",
+                              style: GoogleFonts.outfit(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            SizedBox(height: 2),
+                            Text(
+                              "Bagaimana kabarmu hari ini?",
+                              style: GoogleFonts.outfit(
+                                fontSize: 14,
+                                color: ColorStyles.greyText,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 2),
-                    Text(
-                      "Bagaimana kabarmu hari ini?",
-                      style: GoogleFonts.outfit(
-                        fontSize: 14,
-                        color: ColorStyles.greyText,
-                      ),
+                    SvgPicture.asset(
+                      'assets/notification.svg',
+                      width: 24,
+                      height: 24,
                     ),
                   ],
                 ),
-              ],
-            ),
-            SvgPicture.asset(
-              'assets/notification.svg',
-              width: 24,
-              height: 24,
-            ),
-          ],
-        ),
-      ),
-      body: Container(
-        padding: EdgeInsets.only(right: 16, left: 16),
-        decoration: BoxDecoration(
-          color: ColorStyles.white,
-        ),
-        child: Column(
-          children: [
-            SizedBox(height: 16,),
-            SearchBars(),
-            SizedBox(height: 32),
-            // Carousel
-            Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                Container(
-                  height: 140.0,
-                  child: PageView(
-                    controller: _pageController,
-                    onPageChanged: (value) {
-                      setState(() {
-                        _currentPage = value;
-                      });
-                    },
-                    children: [
-                      Container(
-                        // margin: EdgeInsets.symmetric(horizontal: 2.0),
-                        child: Image.asset('assets/carousel1.png'),
-                      ),
-                      Container(
-                        // margin: EdgeInsets.symmetric(horizontal: 2.0),
-                        child: Image.asset('assets/carousel1.png'),
-                      ),
-                      Container(
-                        // margin: EdgeInsets.symmetric(horizontal: 2.0),
-                        child: Image.asset('assets/carousel1.png'),
-                      ),
-                    ],
-                  ),
-                ),
-                // Page indicator
-                Positioned(
-                  bottom: 10.0,
-                  child: Container(
-                    child: Row (
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(3, (index) => buildDot(index: index)),
-                    ),
-                  )
-                ),
-              ],
-            ),
-            SizedBox(height: 32),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+               ),
+              SizedBox(height: 16,),
+              Container(
+                padding: EdgeInsets.only(left: 16, right: 16),
+                child: SearchBars()
+              ),
+              SizedBox(height: 32),
+              // Carousel
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: Stack(
+                  alignment: Alignment.bottomCenter,
                   children: [
-                    Text(
-                      "Rekomendasi Lowongan",
-                      style: GoogleFonts.outfit(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height * 0.2,
+                      child: PageView(
+                        controller: _pageController,
+                        onPageChanged: (value) {
+                          setState(() {
+                            _currentPage = value;
+                          });
+                        },
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image.asset('assets/carousel1.png',),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image.asset('assets/carousel1.png',),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image.asset('assets/carousel1.png',),
+                          ),
+                        ],
                       ),
                     ),
-                    Text(
-                      "Berdasar personalisasi",
-                      style: GoogleFonts.outfit(
-                        fontSize: 14,
-                        color: ColorStyles.greyText,
+                    // Page indicator
+                    Positioned(
+                      bottom: 15.0,
+                      child: Container(
+                        child: Row (
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(3, (index) => buildDot(index: index)),
+                        ),
+                      )
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 32),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Rekomendasi Lowongan",
+                              style: GoogleFonts.outfit(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            Text(
+                              "Berdasar personalisasi",
+                              style: GoogleFonts.outfit(
+                                fontSize: 14,
+                                color: ColorStyles.greyText,
+                              ),
+                            )
+                          ],
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ApplyJobPage()),
+                            );
+                          },
+                          child: Text(
+                            "Lihat semua",
+                            style: GoogleFonts.outfit(
+                              fontSize: 14,
+                              color: ColorStyles.greyText,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 16),
+                    Container(
+                      height: 155,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: pekerjaanList.length,
+                        separatorBuilder: (context, index) => SizedBox(width: 12),
+                        itemBuilder: (context, index) {
+                          return PekerjaanCards(
+                            jobImage: pekerjaanList[index][0],
+                            jobTitle: pekerjaanList[index][1],
+                            companyName: pekerjaanList[index][2],
+                            location: pekerjaanList[index][3],
+                            salary: pekerjaanList[index][4],
+                            jobType: pekerjaanList[index][5],
+                            disabilitasType: pekerjaanList[index][6],
+                            updatedAt: pekerjaanList[index][7],
+                          );
+                        },
                       ),
                     )
                   ],
                 ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ApplyJobPage()),
-                    );
-                  },
-                  child: Text(
-                    "Lihat semua",
-                    style: GoogleFonts.outfit(
-                      fontSize: 14,
-                      color: ColorStyles.greyText,
-                    ),
-                  ),
-                )
-              ],
-            ),
-            SizedBox(height: 16),
-            Container(
-              height: 155,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: pekerjaanList.length,
-                separatorBuilder: (context, index) => SizedBox(width: 12),
-                itemBuilder: (context, index) {
-                  return PekerjaanCards(
-                    jobImage: pekerjaanList[index][0],
-                    jobTitle: pekerjaanList[index][1],
-                    companyName: pekerjaanList[index][2],
-                    location: pekerjaanList[index][3],
-                    salary: pekerjaanList[index][4],
-                    jobType: pekerjaanList[index][5],
-                    disabilitasType: pekerjaanList[index][6],
-                    updatedAt: pekerjaanList[index][7],
-                  );
-                },
               ),
-            )
-          ]
+              SizedBox(height: 32,),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Rekomendasi Sertifikasi",
+                              style: GoogleFonts.outfit(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            Text(
+                              "Berdasar personalisasi",
+                              style: GoogleFonts.outfit(
+                                fontSize: 14,
+                                color: ColorStyles.greyText,
+                              ),
+                            )
+                          ],
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ApplyJobPage()),
+                            );
+                          },
+                          child: Text(
+                            "Lihat semua",
+                            style: GoogleFonts.outfit(
+                              fontSize: 14,
+                              color: ColorStyles.greyText,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 16),
+                    Container(
+                      height: 155,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: pekerjaanList.length,
+                        separatorBuilder: (context, index) => SizedBox(width: 12),
+                        itemBuilder: (context, index) {
+                          return PekerjaanCards(
+                            jobImage: pekerjaanList[index][0],
+                            jobTitle: pekerjaanList[index][1],
+                            companyName: pekerjaanList[index][2],
+                            location: pekerjaanList[index][3],
+                            salary: pekerjaanList[index][4],
+                            jobType: pekerjaanList[index][5],
+                            disabilitasType: pekerjaanList[index][6],
+                            updatedAt: pekerjaanList[index][7],
+                          );
+                        },
+                      ),
+                    ),
+                    SizedBox(height: 32),
+                  ],
+                ),
+              ),
+            ]
+          ),
         ),
       ),
     );
