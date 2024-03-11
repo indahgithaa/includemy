@@ -5,6 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import './widgets/search_fields.dart';
 import './widgets/navigation_bar.dart';
 import './widgets/floating_btn.dart';
+import './applyjob_page.dart';
+import './widgets/pekerjaan_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -89,15 +91,15 @@ class _HomePageState extends State<HomePage> {
                     },
                     children: [
                       Container(
-                        margin: EdgeInsets.symmetric(horizontal: 2.0),
+                        // margin: EdgeInsets.symmetric(horizontal: 2.0),
                         child: Image.asset('assets/carousel1.png'),
                       ),
                       Container(
-                        margin: EdgeInsets.symmetric(horizontal: 2.0),
+                        // margin: EdgeInsets.symmetric(horizontal: 2.0),
                         child: Image.asset('assets/carousel1.png'),
                       ),
                       Container(
-                        margin: EdgeInsets.symmetric(horizontal: 2.0),
+                        // margin: EdgeInsets.symmetric(horizontal: 2.0),
                         child: Image.asset('assets/carousel1.png'),
                       ),
                     ],
@@ -114,6 +116,57 @@ class _HomePageState extends State<HomePage> {
                   )
                 ),
               ],
+            ),
+            SizedBox(height: 32),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Rekomendasi Lowongan",
+                      style: GoogleFonts.outfit(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Text(
+                      "Berdasar personalisasi",
+                      style: GoogleFonts.outfit(
+                        fontSize: 14,
+                        color: ColorStyles.greyText,
+                      ),
+                    )
+                  ],
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ApplyJobPage()),
+                    );
+                  },
+                  child: Text(
+                    "Lihat semua",
+                    style: GoogleFonts.outfit(
+                      fontSize: 14,
+                      color: ColorStyles.greyText,
+                    ),
+                  ),
+                )
+              ],
+            ),
+            SizedBox(height: 16),
+            PekerjaanCards(
+              jobImage: 'assets/job-img1.svg', 
+              jobTitle: 'Staff Marketing Operational', 
+              companyName: 'InkSpace', 
+              location: 'Malang, Jawa Timur', 
+              salary: '2.000k', 
+              jobType: 'Full Time', 
+              disabilitasType: 'Tuna Daksa', 
+              updatedAt: '2hr ago',
             ),
           ]
         ),
