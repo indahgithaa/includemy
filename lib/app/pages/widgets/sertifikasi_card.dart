@@ -4,6 +4,7 @@ import 'package:includemy/app/styles/color_styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SertifikasiCards extends StatefulWidget {
+  final double width;
   final String certiImage;
   final String certiTitle;
   final String companyName;
@@ -17,6 +18,7 @@ class SertifikasiCards extends StatefulWidget {
 
   const SertifikasiCards({
     Key? key,
+    required this.width,
     required this.certiImage,
     required this.certiTitle,
     required this.companyName,
@@ -37,7 +39,7 @@ class _SertifikasiCardsState extends State<SertifikasiCards> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 12, top: 12),
+      padding: EdgeInsets.only(left: 12, top: 12, right: 12),
       decoration: BoxDecoration(
         color: ColorStyles.white,
         borderRadius: BorderRadius.circular(8),
@@ -54,8 +56,7 @@ class _SertifikasiCardsState extends State<SertifikasiCards> {
             height: 40,
           ),
           SizedBox(width: 12),
-          SizedBox(
-            width: 271,
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

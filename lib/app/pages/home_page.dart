@@ -202,6 +202,7 @@ class _HomePageState extends State<HomePage> {
                       separatorBuilder: (context, index) => SizedBox(width: 12),
                       itemBuilder: (context, index) {
                         return PekerjaanCards(
+                          width: 304,
                           jobImage: pekerjaanList[index][0],
                           jobTitle: pekerjaanList[index][1],
                           companyName: pekerjaanList[index][2],
@@ -276,6 +277,7 @@ class _HomePageState extends State<HomePage> {
                       separatorBuilder: (context, index) => SizedBox(width: 12),
                       itemBuilder: (context, index) {
                         return SertifikasiCards(
+                          width: 343,
                           certiImage: sertifikasiList[index][0],
                           certiTitle: sertifikasiList[index][1],
                           companyName: sertifikasiList[index][2],

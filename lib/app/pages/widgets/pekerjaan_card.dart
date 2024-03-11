@@ -4,6 +4,7 @@ import 'package:includemy/app/styles/color_styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class PekerjaanCards extends StatefulWidget {
+  final double width;
   final String jobImage;
   final String jobTitle;
   final String companyName;
@@ -15,6 +16,7 @@ class PekerjaanCards extends StatefulWidget {
 
   const PekerjaanCards({
     Key? key,
+    required this.width,
     required this.jobImage,
     required this.jobTitle,
     required this.companyName,
@@ -33,13 +35,13 @@ class _PekerjaanCardsState extends State<PekerjaanCards> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 12, top: 12),
+      padding: EdgeInsets.only(left: 12, top: 12, right: 12),
       decoration: BoxDecoration(
         color: ColorStyles.white,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: ColorStyles.greyOutline, width: 1)
       ),
-      width: 304,
+      width: widget.width,
       height: 155,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,8 +52,7 @@ class _PekerjaanCardsState extends State<PekerjaanCards> {
             height: 40,
           ),
           SizedBox(width: 12),
-          SizedBox(
-            width: 228,
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
