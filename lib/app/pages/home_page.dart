@@ -217,9 +217,12 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            SizedBox(height: 32,),
+            SizedBox(height: 16,),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              decoration: BoxDecoration(
+                color: ColorStyles.white,
+              ),
+              padding: EdgeInsets.only(top: 16, left: 16, bottom:16),
               child: Column(
                 children: [
                   Row(
@@ -244,18 +247,21 @@ class _HomePageState extends State<HomePage> {
                           )
                         ],
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => ApplyJobPage()),
-                          );
-                        },
-                        child: Text(
-                          "Lihat semua",
-                          style: GoogleFonts.outfit(
-                            fontSize: 14,
-                            color: ColorStyles.greyText,
+                      Padding(
+                        padding: const EdgeInsets.only(right: 16),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ApplyJobPage()),
+                            );
+                          },
+                          child: Text(
+                            "Lihat semua",
+                            style: GoogleFonts.outfit(
+                              fontSize: 14,
+                              color: ColorStyles.greyText,
+                            ),
                           ),
                         ),
                       )
