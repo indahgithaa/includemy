@@ -22,52 +22,59 @@ class _SertifikasiPageState extends State<SertifikasiPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: ColorStyles.white,
-            ),
-            padding: EdgeInsets.all(16),
-            child: Column(
-              children: [
-                SizedBox(height: 30,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return CustomScrollView(
+      slivers: [
+        DecoratedSliver(
+          decoration: BoxDecoration(color: ColorStyles.white),
+          sliver: SliverPadding(
+            padding: EdgeInsets.only(left: 16, right: 16, top: 24, bottom: 16,),
+            sliver: SliverToBoxAdapter(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: ColorStyles.white,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Tab Sertifikasi",
-                        style: GoogleFonts.outfit(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: ColorStyles.black
+                    SizedBox(height: 30),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Tab Sertifikasi",
+                              style: GoogleFonts.outfit(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: ColorStyles.black,
+                              ),
+                            ),
+                            Text(
+                              "Cari minat & bakatmu disini",
+                              style: GoogleFonts.outfit(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                color: ColorStyles.greyText,
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      Text(
-                        "Cari minat & bakatmu disini",
-                        style: GoogleFonts.outfit(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: ColorStyles.greyText
-                        )
-                      ),
-                    ], 
+                        SvgPicture.asset('assets/notification.svg'),
+                      ],
                     ),
-                    SvgPicture.asset('assets/notification.svg'),
+                    SizedBox(height: 16),
+                    SearchBars(),
                   ],
                 ),
-                SizedBox(height: 16,),
-                SearchBars(),
-              ],
+              ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(16),
+        ),
+        SliverPadding(
+          padding: EdgeInsets.all(16),
+          sliver: SliverToBoxAdapter(
             child: RichText(
               text: TextSpan(
                 children: [
@@ -95,34 +102,43 @@ class _SertifikasiPageState extends State<SertifikasiPage> {
                       color: ColorStyles.greyText,
                     ),
                   ),
-                ]
+                ],
               ),
             ),
           ),
-          Expanded(
-            child: ListView.separated(
-              scrollDirection: Axis.vertical,
-              itemCount: sertifikasiList.length,
-              separatorBuilder: (context, index) => SizedBox(height: 16,),
-              itemBuilder: (context, index) {
-                return SertifikasiCards(
-                  width: MediaQuery.of(context).size.width,
-                  certiImage: sertifikasiList[index][0],
-                  certiTitle: sertifikasiList[index][1],
-                  companyName: sertifikasiList[index][2],
-                  rating: sertifikasiList[index][3],
-                  jmlPenilaian: sertifikasiList[index][4],
-                  duration: sertifikasiList[index][5],
-                  relatedField: sertifikasiList[index][6],
-                  certiType: sertifikasiList[index][7],
-                  fee: sertifikasiList[index][8],
-                  updatedAt: sertifikasiList[index][9],
-                );
-              },
-            ),
+        ),
+        DecoratedSliver(
+          decoration: BoxDecoration(
+            color: ColorStyles.white,
           ),
-        ],
-      ),
+          sliver:  SliverPadding(
+            padding: EdgeInsets.only(top: 16, right: 16, left: 16),
+             sliver: SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                    return Padding(
+                      padding: EdgeInsets.only(bottom: 16),
+                      child: SertifikasiCards(
+                        width: MediaQuery.of(context).size.width,
+                        certiImage: sertifikasiList[index][0],
+                        certiTitle: sertifikasiList[index][1],
+                        companyName: sertifikasiList[index][2],
+                        rating: sertifikasiList[index][3],
+                        jmlPenilaian: sertifikasiList[index][4],
+                        duration: sertifikasiList[index][5],
+                        relatedField: sertifikasiList[index][6],
+                        certiType: sertifikasiList[index][7],
+                        fee: sertifikasiList[index][8],
+                        updatedAt: sertifikasiList[index][9],
+                      ),
+                    );
+                  },
+                  childCount: sertifikasiList.length,
+                ),
+              ),
+          ),
+        ),
+      ],
     );
   }
 }
