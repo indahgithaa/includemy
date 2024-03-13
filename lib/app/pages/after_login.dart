@@ -62,6 +62,7 @@ class _AfterLoginState extends State<AfterLogin> {
           BottomNavigationBarItem(
             icon: Visibility(visible: false, child: Icon(Icons.home)),
             label: '',
+            //disable the middle button
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset('assets/mentoring.svg',),
@@ -91,8 +92,6 @@ class _AfterLoginState extends State<AfterLogin> {
       return this._screen1;
     } else if (this.selectedIndex == 1) {
       return this._screen2;
-    } else if (this.selectedIndex == 2) {
-      return this._screen3;
     } else if (this.selectedIndex == 3) {
       return this._screen4;
     }
