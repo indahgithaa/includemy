@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:includemy/app/pages/sertifikasi_page.dart';
 import 'package:includemy/app/styles/color_styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import './widgets/search_fields.dart';
@@ -8,6 +9,8 @@ import './widgets/floating_btn.dart';
 import './applyjob_page.dart';
 import './widgets/pekerjaan_card.dart';
 import './widgets/sertifikasi_card.dart';
+import './connect_page.dart';
+import './mentoring_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -254,7 +257,11 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => ApplyJobPage()),
+                              MaterialPageRoute(builder: (context) => Scaffold(
+                                body: SertifikasiPage(),
+                                bottomNavigationBar: NavigationBars(),
+                                floatingActionButton: FloatingBtn(),
+                              )),
                             );
                           },
                           child: Text(

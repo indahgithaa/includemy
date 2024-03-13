@@ -12,10 +12,11 @@ import '../home_page.dart';
 import '../applyjob_page.dart';
 
 class NavigationBars extends StatefulWidget {
- // final int currentTab;
+  // final int currentTab;
 
   const NavigationBars({
-    super.key
+    Key? key,
+    // required this.currentTab,
   });
 
   @override
@@ -24,6 +25,7 @@ class NavigationBars extends StatefulWidget {
 
 class _NavigationBarsState extends State<NavigationBars> {
   int selectedIndex = 0;
+
   Widget _screen1 = HomePage();
   Widget _screen2 = SertifikasiPage();
   Widget _screen3 = ApplyJobPage();

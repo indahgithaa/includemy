@@ -9,6 +9,7 @@ import './widgets/buttons.dart';
 import './signup_page.dart';
 import './home_page.dart';
 import './after_login.dart';
+import './sertifikasi_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
