@@ -39,52 +39,54 @@ class OnboardingPage extends StatelessWidget {
                 height: MediaQuery.of(context).size.height / 2.7,
                 child: Padding(
                   padding: EdgeInsets.only(top: 24, bottom: 24, left: 16, right: 16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Selamat Datang! 👋",
-                        style: GoogleFonts.outfit(
-                          fontSize: 32,
-                          fontWeight: FontWeight.w500
+                  child: Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Selamat Datang! 👋",
+                          style: GoogleFonts.outfit(
+                            fontSize: 32,
+                            fontWeight: FontWeight.w500
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 14,),
-                      Text(
-                        "Selamat datang di Includemy, sahabat disabilitas untuk prospek karir gemilang!",
-                        style: GoogleFonts.outfit(
-                          fontSize: 14,
-                          color: ColorStyles.greyText,
+                        SizedBox(height: 14,),
+                        Text(
+                          "Selamat datang di Includemy, sahabat disabilitas untuk prospek karir gemilang!",
+                          style: GoogleFonts.outfit(
+                            fontSize: 14,
+                            color: ColorStyles.greyText,
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 32,),
-                      Buttons(
-                        text: "Masuk", 
-                        onClicked: (){
-                          Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                         LoginPage()));
-                        }, 
-                        width: MediaQuery.of(context).size.width, 
-                        backgroundColor: ColorStyles.primary.withOpacity(0.05), 
-                        fontColor: ColorStyles.primary
-                      ),
-                      SizedBox(height: 12,),
-                      Buttons(
-                        text: "Buat Akun > ",
-                        onClicked: (){
-                           Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                         SignupPage()));
-                        },
-                        width: MediaQuery.of(context).size.width, 
-                        backgroundColor: ColorStyles.primary,
-                        fontColor: ColorStyles.white,)
-                    ],
+                        SizedBox(height: 32,),
+                        Buttons(
+                          text: "Masuk", 
+                          onClicked: (){
+                            Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                           LoginPage()));
+                          }, 
+                          width: MediaQuery.of(context).size.width, 
+                          backgroundColor: ColorStyles.primary.withOpacity(0.05), 
+                          fontColor: ColorStyles.primary
+                        ),
+                        SizedBox(height: 12,),
+                        Buttons(
+                          text: "Buat Akun > ",
+                          onClicked: (){
+                             Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                           SignupPage()));
+                          },
+                          width: MediaQuery.of(context).size.width, 
+                          backgroundColor: ColorStyles.primary,
+                          fontColor: ColorStyles.white,)
+                      ],
+                    ),
                   ),
                 ),
               ),
