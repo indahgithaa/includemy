@@ -439,6 +439,10 @@ class _DetailSertificatePageState extends State<DetailSertificatePage> {
                           ],
                         ),
                       ),
+                      SizedBox(height: 16),
+                      SingleChildScrollView(
+                        child: currentTab == 0 ? teksTautan() : widgetTautan(),
+                      ),
                     ],
                   ),
                 ),
@@ -448,5 +452,21 @@ class _DetailSertificatePageState extends State<DetailSertificatePage> {
         ),
       )
     );
+  }
+
+  Widget teksTautan(){
+    return Expanded(
+      child: Text(
+        widget.deskripsi,
+        style: GoogleFonts.outfit(
+          fontSize: 14,
+          color: ColorStyles.greyText,
+        ),
+      ),
+    );
+  }
+
+  Widget widgetTautan(){
+    return Container();
   }
 }
