@@ -295,6 +295,7 @@ class _HomePageState extends State<HomePage> {
                           certiType: sertifikasiList[index][7],
                           fee: sertifikasiList[index][8],
                           updatedAt: sertifikasiList[index][9],
+                          onClicked: (){},
                         );
                       },
                     ),
