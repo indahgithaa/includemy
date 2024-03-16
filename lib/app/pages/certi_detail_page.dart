@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:includemy/app/styles/color_styles.dart';
 import './widgets/attachments.dart';
+import './widgets/buttons.dart';
 
 class DetailSertificatePage extends StatefulWidget {
    final String certiImage;
@@ -382,6 +383,7 @@ class _DetailSertificatePageState extends State<DetailSertificatePage> {
                                 child: Container(
                                   alignment: Alignment.center,
                                   child: Container(
+                                    padding: EdgeInsets.only(bottom: 4),
                                     alignment: Alignment.center,
                                     width: 68,
                                     child: Text(
@@ -423,6 +425,7 @@ class _DetailSertificatePageState extends State<DetailSertificatePage> {
                                 child: Container(
                                   alignment: Alignment.center,
                                   child: Container(
+                                    padding: EdgeInsets.only(bottom: 4),
                                     width: 68,
                                     alignment: Alignment.center,
                                     child: Text(
@@ -459,7 +462,29 @@ class _DetailSertificatePageState extends State<DetailSertificatePage> {
             ),
           ],
         ),
-      )
+      ),
+      bottomNavigationBar: Container(
+        height: 84,
+        padding: EdgeInsets.all(16),
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          color: ColorStyles.white,
+          boxShadow: [
+            BoxShadow(
+              color: ColorStyles.greyOutline,
+              offset: Offset(0, -1),
+              blurRadius: 8,
+            ),
+          ],
+        ),
+        child: Buttons(
+          text: "Daftar", 
+          onClicked: (){}, 
+          width: MediaQuery.of(context).size.width, 
+          backgroundColor: ColorStyles.primary, 
+          fontColor: ColorStyles.white,
+        ),
+      ),
     );
   }
 
