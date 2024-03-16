@@ -6,6 +6,7 @@ import './widgets/search_fields.dart';
 import './widgets/sertifikasi_card.dart';
 import 'package:video_player/video_player.dart';
 import './certi_detail_page.dart';
+import './widgets/attachments.dart';
 
 class SertifikasiPage extends StatefulWidget {
   const SertifikasiPage({super.key});

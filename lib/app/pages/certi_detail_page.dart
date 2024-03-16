@@ -4,6 +4,7 @@ import './widgets/video_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:includemy/app/styles/color_styles.dart';
+import './widgets/attachments.dart';
 
 class DetailSertificatePage extends StatefulWidget {
    final String certiImage;
@@ -42,6 +43,14 @@ class DetailSertificatePage extends StatefulWidget {
   @override
   State<DetailSertificatePage> createState() => _DetailSertificatePageState();
 }
+
+List<List<String>> panduanAttachments = [
+  ["pdf", "Panduan Pendaftaran.pdf", "4.27 MB",],
+];
+
+List<List<String>> keperluanAttachments = [
+  ["e"]
+];
 
 class _DetailSertificatePageState extends State<DetailSertificatePage> {
   // late VideoPlayerController videoPlayerController;
@@ -441,7 +450,7 @@ class _DetailSertificatePageState extends State<DetailSertificatePage> {
                       ),
                       SizedBox(height: 16),
                       SingleChildScrollView(
-                        child: currentTab == 0 ? teksTautan() : widgetTautan(),
+                        child: currentTab == 0 ? teksTentang() : widgetTautan(),
                       ),
                     ],
                   ),
@@ -454,7 +463,7 @@ class _DetailSertificatePageState extends State<DetailSertificatePage> {
     );
   }
 
-  Widget teksTautan(){
+  Widget teksTentang(){
     return Expanded(
       child: Text(
         widget.deskripsi,
@@ -467,6 +476,99 @@ class _DetailSertificatePageState extends State<DetailSertificatePage> {
   }
 
   Widget widgetTautan(){
-    return Container();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Text(
+              "Panduan",
+              style: GoogleFonts.outfit(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: ColorStyles.black,
+              ),
+            ),
+            SizedBox(width: 8,),
+            Container(
+              alignment: Alignment.center,
+              width: 20,
+              height: 20,
+              child: Text(
+                "${panduanAttachments.length}",
+                style: GoogleFonts.outfit(
+                  fontSize: 12,
+                  color: ColorStyles.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              decoration: BoxDecoration(
+                color: ColorStyles.greyBg,
+                borderRadius: BorderRadius.circular(100),
+              ),
+            ),
+          ],
+        ),
+        ListView.builder(
+          padding: EdgeInsets.only(top: 16),
+          shrinkWrap: true,
+          itemCount: panduanAttachments.length,
+          itemBuilder: (context, index){
+            return Attachments(
+              width: MediaQuery.of(context).size.width,
+              attachmentType: panduanAttachments[index][0],
+              attachmentTitle: panduanAttachments[index][1],
+              attachmentInfo: panduanAttachments[index][2], // Fixed the property name
+              onClicked: (){},
+            );
+          },
+        ),
+        // Row(
+        //   children: [
+        //     Text(
+        //       "Keperluan Peserta",
+        //       style: GoogleFonts.outfit(
+        //         fontSize: 14,
+        //         fontWeight: FontWeight.w500,
+        //         color: ColorStyles.black,
+        //       ),
+        //     ),
+        //     SizedBox(width: 8,),
+        //     Container(
+        //       alignment: Alignment.center,
+        //       width: 20,
+        //       height: 20,
+        //       child: Text(
+        //         "${keperluanAttachments.length}",
+        //         style: GoogleFonts.outfit(
+        //           fontSize: 12,
+        //           color: ColorStyles.black,
+        //           fontWeight: FontWeight.w500,
+        //         ),
+        //       ),
+        //       decoration: BoxDecoration(
+        //         color: ColorStyles.greyBg,
+        //         borderRadius: BorderRadius.circular(100),
+        //       ),
+        //     ),
+        //     ListView.builder(
+        //       shrinkWrap: true,
+        //       physics: NeverScrollableScrollPhysics(),
+        //       itemCount: keperluanAttachments.length,
+        //       itemBuilder: (context, index){
+        //         return Attachments(
+        //           width: MediaQuery.of(context).size.width,
+        //           attachmentType: keperluanAttachments[index][0],
+        //           attachmentTitle: keperluanAttachments[index][1],
+        //           attachmentInfo: keperluanAttachments[index][2], // Fixed the property name
+        //           onClicked: (){},
+        //         );
+        //       },
+        //     ),
+        //   ],
+        // ),
+      ],
+    );
   }
 }
