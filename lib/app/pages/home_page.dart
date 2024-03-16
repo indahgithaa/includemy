@@ -11,6 +11,7 @@ import './widgets/pekerjaan_card.dart';
 import './widgets/sertifikasi_card.dart';
 import './connect_page.dart';
 import './mentoring_page.dart';
+import './applyjob_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -260,7 +261,15 @@ class _HomePageState extends State<HomePage> {
                               MaterialPageRoute(builder: (context) => Scaffold(
                                 body: SertifikasiPage(),
                                 bottomNavigationBar: NavigationBars(),
-                                floatingActionButton: FloatingBtn(),
+                                floatingActionButton: GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => const ApplyJobPage(),
+                                      ),
+                                    ); 
+                                  },
+                                  child: FloatingBtn()),
                               )),
                             );
                           },

@@ -12,6 +12,8 @@ class ApplyJobPage extends StatefulWidget {
 class _ApplyJobPageState extends State<ApplyJobPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Text("hii"),
+    );
   }
 }

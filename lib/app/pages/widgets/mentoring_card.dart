@@ -8,9 +8,9 @@ class MentoringCards extends StatefulWidget {
   final String programImage;
   final String mentoringName;
   final String mentoringField;
-  final double rating;
+  final String rating;
   final String mentoringType;
-  final int jumlahMateri;
+  final String jumlahMateri;
   final String namaMentor;
   final String mentorImage;
   
@@ -67,7 +67,7 @@ class _MentoringCardsState extends State<MentoringCards> {
                         children: [
                           SvgPicture.asset('assets/star.svg',),
                           Text(
-                            widget.rating.toString(),
+                            widget.rating,
                             style: GoogleFonts.outfit(
                               fontSize: 12,
                               color: ColorStyles.greyText,
@@ -109,7 +109,7 @@ class _MentoringCardsState extends State<MentoringCards> {
                         children: [
                           SvgPicture.asset('assets/book.svg'),
                           Text(
-                            widget.jumlahMateri.toString() + " Materi",
+                            widget.jumlahMateri + " Materi",
                             style: GoogleFonts.outfit(
                               fontSize: 12,
                               color: ColorStyles.greyText,
