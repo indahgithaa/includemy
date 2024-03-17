@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:includemy/app/pages/widgets/navigation_bar.dart';
+import 'package:includemy/app/pages/widgets/khusus_apply_job.dart';
 import 'package:includemy/app/styles/color_styles.dart';
 import './widgets/search_fields.dart';
 import './widgets/sertifikasi_card.dart';

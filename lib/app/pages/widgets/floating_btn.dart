@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:includemy/app/styles/color_styles.dart';
 import '../applyjob_page.dart';
-import '../widgets/navigation_bar.dart';
+import 'khusus_apply_job.dart';
 
 class FloatingBtn extends StatelessWidget {
   const FloatingBtn({
@@ -18,7 +18,7 @@ class FloatingBtn extends StatelessWidget {
         onPressed: () {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => NavigationBars()),
+            MaterialPageRoute(builder: (context) => KhususApplyJob()),
           );
         },
         backgroundColor: ColorStyles.primary,

@@ -12,20 +12,20 @@ import '../home_page.dart';
 import '../applyjob_page.dart';
 import '../widgets/floating_btn.dart';
 
-class NavigationBars extends StatefulWidget {
+class KhususSertifikasi extends StatefulWidget {
   // final int currentTab;
 
-  const NavigationBars({
+  const KhususSertifikasi({
     Key? key,
     // required this.currentTab,
   });
 
   @override
-  State<NavigationBars> createState() => _NavigationBarsState();
+  State<KhususSertifikasi> createState() => _KhususSertifikasiState();
 }
 
-class _NavigationBarsState extends State<NavigationBars> {
-  int selectedIndex = 2;
+class _KhususSertifikasiState extends State<KhususSertifikasi> {
+  int selectedIndex = 1;
 
   Widget _screen1 = HomePage();
   Widget _screen2 = SertifikasiPage();
