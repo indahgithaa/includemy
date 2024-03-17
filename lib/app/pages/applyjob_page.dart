@@ -9,6 +9,7 @@ import 'package:video_player/video_player.dart';
 import './certi_detail_page.dart';
 import './widgets/attachments.dart';
 import './widgets/pekerjaan_card.dart';
+import './widgets/floating_btn.dart';
 
 class ApplyJobPage extends StatefulWidget {
   const ApplyJobPage({super.key});
@@ -145,7 +146,7 @@ class _ApplyJobPageState extends State<ApplyJobPage> {
             ),
           ),
         ],
-      ),
+      )
     );
   }
 }

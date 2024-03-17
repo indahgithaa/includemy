@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:includemy/app/styles/color_styles.dart';
 import '../applyjob_page.dart';
+import '../widgets/navigation_bar.dart';
 
 class FloatingBtn extends StatelessWidget {
   const FloatingBtn({
@@ -11,26 +12,18 @@ class FloatingBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => ApplyJobPage()),
-        );
-      },
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ApplyJobPage()),
-            );
-          },
-          backgroundColor: ColorStyles.primary,
-          elevation: 0.0,
-          child: SvgPicture.asset('assets/work.svg'),
-        ),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(100),
+      child: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => NavigationBars()),
+          );
+        },
+        backgroundColor: ColorStyles.primary,
+        elevation: 0.0,
+        child: SvgPicture.asset('assets/work.svg'),
       ),
     );
   }

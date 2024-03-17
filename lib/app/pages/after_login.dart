@@ -60,9 +60,13 @@ class _AfterLoginState extends State<AfterLogin> {
             activeIcon: SvgPicture.asset('assets/certificate_filled.svg',),
           ),
           BottomNavigationBarItem(
-            icon: Visibility(visible: false, child: Icon(Icons.home)),
-            label: '',
-            //disable the middle button
+            icon: Container(
+              child: GestureDetector(
+                child: Container(),
+                onTap: null,
+              ),
+            ),
+            label: "",
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset('assets/mentoring.svg',),
@@ -76,7 +80,13 @@ class _AfterLoginState extends State<AfterLogin> {
           )
         ],
       ),
-      floatingActionButton: FloatingBtn(),
+      floatingActionButton: Container(
+        child: Column(children: [
+          SizedBox(height: MediaQuery.of(context).size.height - 68),
+          FloatingBtn(),
+        ]),
+        
+        ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
@@ -92,6 +102,8 @@ class _AfterLoginState extends State<AfterLogin> {
       return this._screen1;
     } else if (this.selectedIndex == 1) {
       return this._screen2;
+    } else if (this.selectedIndex == 2) {
+      return this._screen3;
     } else if (this.selectedIndex == 3) {
       return this._screen4;
     }
