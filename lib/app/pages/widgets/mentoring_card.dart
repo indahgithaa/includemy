@@ -13,6 +13,7 @@ class MentoringCards extends StatefulWidget {
   final String jumlahMateri;
   final String namaMentor;
   final String mentorImage;
+  final VoidCallback onClicked;
   
   const MentoringCards({
     Key? key,
@@ -25,6 +26,7 @@ class MentoringCards extends StatefulWidget {
     required this.jumlahMateri,
     required this.namaMentor,
     required this.mentorImage,
+    required this.onClicked,
   });
 
   @override
@@ -34,119 +36,122 @@ class MentoringCards extends StatefulWidget {
 class _MentoringCardsState extends State<MentoringCards> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: widget.width,
-      height: 140,
-      child: Row(
-        children: [
-          Image.asset('${widget.programImage}', width: 140, height: 140,),
-          SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(8),
-                      child: Text(
-                        widget.mentoringField,
-                        style: GoogleFonts.outfit(
-                          fontSize: 12,
-                          color: ColorStyles.primary,
-                        ),
-                      ),
-                      decoration: BoxDecoration(
-                        color: ColorStyles.primary.withOpacity(0.08),
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                    ),
-                    Container(
-                      child: Row(
-                        children: [
-                          SvgPicture.asset('assets/star.svg',),
-                          Text(
-                            widget.rating,
-                            style: GoogleFonts.outfit(
-                              fontSize: 12,
-                              color: ColorStyles.greyText,
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(height: 8),
-                Text(
-                  widget.mentoringName,
-                  style: GoogleFonts.outfit(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: ColorStyles.black,
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      child: Row(
-                        children: [
-                          SvgPicture.asset('assets/category.svg'),
-                          Text(
-                            widget.mentoringType,
-                            style: GoogleFonts.outfit(
-                              fontSize: 12,
-                              color: ColorStyles.greyText,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      child: Row(
-                        children: [
-                          SvgPicture.asset('assets/book.svg'),
-                          Text(
-                            widget.jumlahMateri + " Materi",
-                            style: GoogleFonts.outfit(
-                              fontSize: 12,
-                              color: ColorStyles.greyText,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 38,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 12,
-                          backgroundImage: AssetImage('${widget.mentorImage}',),
-                        ),
-                        SizedBox(width: 4),
-                        Text(
-                          widget.namaMentor,
+    return GestureDetector(
+      onTap: widget.onClicked,
+      child: Container(
+        width: widget.width,
+        height: 140,
+        child: Row(
+          children: [
+            Image.asset('${widget.programImage}', width: 140, height: 140,),
+            SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(8),
+                        child: Text(
+                          widget.mentoringField,
                           style: GoogleFonts.outfit(
                             fontSize: 12,
-                            color: ColorStyles.greyText,
+                            color: ColorStyles.primary,
                           ),
                         ),
-                      ],
+                        decoration: BoxDecoration(
+                          color: ColorStyles.primary.withOpacity(0.08),
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                      ),
+                      Container(
+                        child: Row(
+                          children: [
+                            SvgPicture.asset('assets/star.svg',),
+                            Text(
+                              widget.rating,
+                              style: GoogleFonts.outfit(
+                                fontSize: 12,
+                                color: ColorStyles.greyText,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    widget.mentoringName,
+                    style: GoogleFonts.outfit(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: ColorStyles.black,
                     ),
-                    SvgPicture.asset('assets/bookmark.svg'),
-                  ],
-                )
-              ],
-            ),
-          )
-        ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        child: Row(
+                          children: [
+                            SvgPicture.asset('assets/category.svg'),
+                            Text(
+                              widget.mentoringType,
+                              style: GoogleFonts.outfit(
+                                fontSize: 12,
+                                color: ColorStyles.greyText,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Row(
+                          children: [
+                            SvgPicture.asset('assets/book.svg'),
+                            Text(
+                              widget.jumlahMateri + " Materi",
+                              style: GoogleFonts.outfit(
+                                fontSize: 12,
+                                color: ColorStyles.greyText,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 38,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 12,
+                            backgroundImage: AssetImage('${widget.mentorImage}',),
+                          ),
+                          SizedBox(width: 4),
+                          Text(
+                            widget.namaMentor,
+                            style: GoogleFonts.outfit(
+                              fontSize: 12,
+                              color: ColorStyles.greyText,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SvgPicture.asset('assets/bookmark.svg'),
+                    ],
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

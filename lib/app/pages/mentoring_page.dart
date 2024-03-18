@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:includemy/app/styles/color_styles.dart';
 import './widgets/search_fields.dart';
@@ -7,6 +8,7 @@ import './widgets/mentoring_card.dart';
 import 'package:video_player/video_player.dart';
 import './certi_detail_page.dart';
 import './widgets/attachments.dart';
+import './mentoring_detail_page.dart';
 
 class MentoringPage extends StatefulWidget {
   const MentoringPage({super.key});
@@ -17,11 +19,11 @@ class MentoringPage extends StatefulWidget {
 
 class _MentoringPageState extends State<MentoringPage> {
   List<List<String>> mentoringList = [
-    ["assets/contoh-program-mentoring1.png", "Persiapan Karir Dengan CV", "CV & Resume", "4.9", "Persiapan Karir", "3", "Millea Zaneta", "assets/contoh-mentor1.png"],
-    ["assets/contoh-program-mentoring1.png", "Persiapan Karir Dengan CV", "CV & Resume", "4.9", "Persiapan Karir", "3", "Millea Zaneta", "assets/contoh-mentor1.png"],
-    ["assets/contoh-program-mentoring1.png", "Persiapan Karir Dengan CV", "CV & Resume", "4.9", "Persiapan Karir", "3", "Millea Zaneta", "assets/contoh-mentor1.png"],
-    ["assets/contoh-program-mentoring1.png", "Persiapan Karir Dengan CV", "CV & Resume", "4.9", "Persiapan Karir", "3", "Millea Zaneta", "assets/contoh-mentor1.png"],
-    ["assets/contoh-program-mentoring1.png", "Persiapan Karir Dengan CV", "CV & Resume", "4.9", "Persiapan Karir", "3", "Millea Zaneta", "assets/contoh-mentor1.png"],
+    ["assets/contoh-program-mentoring1.png", "Persiapan Karir Dengan CV", "CV & Resume", "4.9", "Persiapan Karir", "3", "Millea Zaneta", "assets/zaneta-img.png", "100", "Curriculum Vitae merupakan suatu hal terpenting dalam melamar pekerjaan. Pada kesempatan kali ini akan dibahas lengkap mengenai pengembangan CV lebih komprehensif.", "🎯 Hal yang Akan Dipelajari \n Strategi Penulisan CV yang Efektif: Pelajari teknik dan strategi untuk menuliskan CV yang menarik perhatian perekrut. \n Pentingnya Menonjolkan Pencapaian: Temukan cara untuk menonjolkan pencapaian Anda secara efektif dalam CV Anda."],
+    ["assets/contoh-program-mentoring1.png", "Persiapan Karir Dengan CV", "CV & Resume", "4.9", "Persiapan Karir", "3", "Millea Zaneta", "assets/zaneta-img.png", "100", "Curriculum Vitae merupakan suatu hal terpenting dalam melamar pekerjaan. Pada kesempatan kali ini akan dibahas lengkap mengenai pengembangan CV lebih komprehensif.", "🎯 Hal yang Akan Dipelajari \n Strategi Penulisan CV yang Efektif: Pelajari teknik dan strategi untuk menuliskan CV yang menarik perhatian perekrut. \n Pentingnya Menonjolkan Pencapaian: Temukan cara untuk menonjolkan pencapaian Anda secara efektif dalam CV Anda."],
+    ["assets/contoh-program-mentoring1.png", "Persiapan Karir Dengan CV", "CV & Resume", "4.9", "Persiapan Karir", "3", "Millea Zaneta", "assets/zaneta-img.png", "100", "Curriculum Vitae merupakan suatu hal terpenting dalam melamar pekerjaan. Pada kesempatan kali ini akan dibahas lengkap mengenai pengembangan CV lebih komprehensif.", "🎯 Hal yang Akan Dipelajari \n Strategi Penulisan CV yang Efektif: Pelajari teknik dan strategi untuk menuliskan CV yang menarik perhatian perekrut. \n Pentingnya Menonjolkan Pencapaian: Temukan cara untuk menonjolkan pencapaian Anda secara efektif dalam CV Anda."],
+    ["assets/contoh-program-mentoring1.png", "Persiapan Karir Dengan CV", "CV & Resume", "4.9", "Persiapan Karir", "3", "Millea Zaneta", "assets/zaneta-img.png", "100", "Curriculum Vitae merupakan suatu hal terpenting dalam melamar pekerjaan. Pada kesempatan kali ini akan dibahas lengkap mengenai pengembangan CV lebih komprehensif.", "🎯 Hal yang Akan Dipelajari \n Strategi Penulisan CV yang Efektif: Pelajari teknik dan strategi untuk menuliskan CV yang menarik perhatian perekrut. \n Pentingnya Menonjolkan Pencapaian: Temukan cara untuk menonjolkan pencapaian Anda secara efektif dalam CV Anda."],
+    ["assets/contoh-program-mentoring1.png", "Persiapan Karir Dengan CV", "CV & Resume", "4.9", "Persiapan Karir", "3", "Millea Zaneta", "assets/zaneta-img.png", "100", "Curriculum Vitae merupakan suatu hal terpenting dalam melamar pekerjaan. Pada kesempatan kali ini akan dibahas lengkap mengenai pengembangan CV lebih komprehensif.", "🎯 Hal yang Akan Dipelajari \n Strategi Penulisan CV yang Efektif: Pelajari teknik dan strategi untuk menuliskan CV yang menarik perhatian perekrut. \n Pentingnya Menonjolkan Pencapaian: Temukan cara untuk menonjolkan pencapaian Anda secara efektif dalam CV Anda."],
   ];
 
   @override
@@ -133,6 +135,20 @@ class _MentoringPageState extends State<MentoringPage> {
                           jumlahMateri: mentoringList[index][5], 
                           namaMentor: mentoringList[index][6], 
                           mentorImage: mentoringList[index][7],
+                          onClicked: (){
+                            Get.to(DetailMentoringPage(
+                              mentoringTitle: mentoringList[index][1],
+                              rating: mentoringList[index][3],
+                              mentorName: mentoringList[index][6],
+                              mentorImg: mentoringList[index][7],
+                              relatedField: mentoringList[index][4],
+                              jmlMateri: mentoringList[index][5],
+                              jmlPenilaian: mentoringList[index][8],
+                              deskripsi: mentoringList[index][9],
+                              tentang: mentoringList[index][10],
+                              )
+                            );
+                          },
                         ),
                       );
                     },
