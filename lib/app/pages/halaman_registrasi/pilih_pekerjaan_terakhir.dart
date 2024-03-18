@@ -9,6 +9,9 @@ import '../widgets/buttons.dart';
 import '../widgets/pageViewIndicator.dart';
 import './pilih_tanggal_lahir.dart';
 import './nomor_hp.dart';
+import 'package:get/get.dart';
+import 'package:includemy/controller/register_controller.dart';
+import 'package:includemy/services/authentication_services.dart';
 
 class PilihPekerjaanTerakhir extends StatefulWidget {
   const PilihPekerjaanTerakhir({super.key});
@@ -150,24 +153,11 @@ class _PilihPekerjaanTerakhirState extends State<PilihPekerjaanTerakhir> {
                 Buttons(
                   text: "Selanjutnya", 
                   onClicked: (){
-                    Navigator.pushReplacement(
-                      context,
-                      PageRouteBuilder(
-                        transitionDuration: Duration(milliseconds: 300),
-                        transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-                          return SlideTransition(
-                            position: Tween<Offset>(
-                              begin: const Offset(1.0, 0.0),
-                              end: Offset.zero,
-                            ).animate(animation),
-                            child: child,
-                          );
-                        },
-                        pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-                          return MasukkanNomorHpPage();
-                        },
-                      ),
+                    RegisterController.instance.updateRegistrationData(
+                      lastedu: _pendidikanTerakhir,
+                      lastjob: _pekerjaanTerakhir,
                     );
+                    Get.to(MasukkanNomorHpPage());
                   }, 
                   width: MediaQuery.of(context).size.width, 
                   backgroundColor: ColorStyles.primary, 

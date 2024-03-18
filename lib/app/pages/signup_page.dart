@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:includemy/app/styles/color_styles.dart';
+import 'package:includemy/controller/register_controller.dart';
 import './widgets/text_fields.dart';
 import './widgets/password_fields.dart';
 import './widgets/buttons.dart';
 import './login_page.dart';
 import '../pages/halaman_registrasi/pilih_golongan.dart';
+import 'package:get/get.dart';
+import '../../services/authentication_services.dart';
+import '../../controller/register_controller.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -17,9 +21,9 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   bool? setujuKetentuan = false;
 
   void toggleSetujuKetentuan(bool? newValue) => setState(() {
@@ -137,24 +141,12 @@ class _SignupPageState extends State<SignupPage> {
                 Buttons(
                   text: "Isi Biodata", 
                   onClicked: () {
-                    Navigator.push(
-                      context,
-                      PageRouteBuilder(
-                        transitionDuration: Duration(milliseconds: 300),
-                        transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-                          return SlideTransition(
-                            position: Tween<Offset>(
-                              begin: const Offset(1.0, 0.0),
-                              end: Offset.zero,
-                            ).animate(animation),
-                            child: child,
-                          );
-                        },
-                        pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-                          return PilihGolonganPage();
-                        },
-                      ),
+                    RegisterController.instance.updateRegistrationData(
+                      name: usernameController.text,
+                      email: emailController.text,
+                      password: passwordController.text,
                     );
+                    Get.to(() => PilihGolonganPage());
                   },
                   width: MediaQuery.of(context).size.width, 
                   backgroundColor: ColorStyles.primary, 

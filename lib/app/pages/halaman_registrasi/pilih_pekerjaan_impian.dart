@@ -5,6 +5,8 @@ import 'package:includemy/app/styles/color_styles.dart';
 import '../widgets/chip_options.dart';
 import '../widgets/buttons.dart';
 import './pilih_tanggal_lahir.dart';
+import 'package:get/get.dart';
+import 'package:includemy/controller/register_controller.dart';
 
 class DreamJobsPage extends StatefulWidget {
   const DreamJobsPage({super.key});
@@ -28,6 +30,8 @@ class _DreamJobsPageState extends State<DreamJobsPage> {
     ["🌍", "Penerjemah Bahasa"],
     ["🔥", "Lainnya"],
   ];
+
+  String userPreference = "";
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +73,14 @@ class _DreamJobsPageState extends State<DreamJobsPage> {
                 children: 
                   List.generate(
                     jobList.length,
-                    (index) => ChipOptions(icon: jobList[index][0], job: jobList[index][1]),
+                    (index) => GestureDetector(
+                      child: ChipOptions(icon: jobList[index][0], job: jobList[index][1]),
+                      onTap: (){
+                        setState(() {
+                          userPreference = jobList[index][1];
+                        });
+                      },
+                    ),
                   ),
               ),
             ),
@@ -80,24 +91,10 @@ class _DreamJobsPageState extends State<DreamJobsPage> {
                 child: Buttons(
                   text: "Isi Biodata", 
                   onClicked: (){
-                    Navigator.pushReplacement(
-                      context,
-                      PageRouteBuilder(
-                        transitionDuration: Duration(milliseconds: 300),
-                        transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-                          return SlideTransition(
-                            position: Tween<Offset>(
-                              begin: const Offset(1.0, 0.0),
-                              end: Offset.zero,
-                            ).animate(animation),
-                            child: child,
-                          );
-                        },
-                        pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-                          return PilihTanggalLahirPage();
-                        },
-                      ),
+                    RegisterController.instance.updateRegistrationData(
+                      preference: userPreference,
                     );
+                    Get.to(PilihTanggalLahirPage());
                   },
                   width: MediaQuery.of(context).size.width, 
                   backgroundColor: ColorStyles.primary, 

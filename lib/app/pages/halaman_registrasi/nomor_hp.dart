@@ -9,6 +9,9 @@ import '../widgets/buttons.dart';
 import '../widgets/pageViewIndicator.dart';
 import './pilih_pekerjaan_terakhir.dart';
 import './verifikasi_berhasil.dart';
+import 'package:get/get.dart';
+import 'package:includemy/controller/register_controller.dart';
+import 'package:includemy/services/authentication_services.dart';
 
 class MasukkanNomorHpPage extends StatefulWidget {
   const MasukkanNomorHpPage({super.key});
@@ -99,23 +102,20 @@ class _MasukkanNomorHPPage extends State<MasukkanNomorHpPage> {
                 Buttons(
                   text: "Selanjutnya", 
                   onClicked: (){
-                    Navigator.push(
-                      context,
-                      PageRouteBuilder(
-                        transitionDuration: Duration(milliseconds: 300),
-                        transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-                          return SlideTransition(
-                            position: Tween<Offset>(
-                              begin: const Offset(1.0, 0.0),
-                              end: Offset.zero,
-                            ).animate(animation),
-                            child: child,
-                          );
-                        },
-                        pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-                          return FinishedVerification();
-                        },
-                      ),
+                    RegisterController.instance.updateRegistrationData(
+                      contact: phoneNumberController.text,
+                    );
+                    AuthenticationServices().register(
+                      name: RegisterController().nameController.text, 
+                      email: RegisterController().emailController.text, 
+                      password: RegisterController().passwordController.text,
+                      born: RegisterController().birthdateController.text,
+                      gender: RegisterController().jenisKelamin.value,
+                      lastjob: RegisterController().pekerjaanTerakhir.value,
+                      lastedu: RegisterController().pendidikanTerakhir.value,
+                      contact: RegisterController().phoneController.text,
+                      preference: RegisterController().preferenceJob.value,
+                      dissability: RegisterController().disabilitasType.value,
                     );
                   }, 
                   width: MediaQuery.of(context).size.width, 

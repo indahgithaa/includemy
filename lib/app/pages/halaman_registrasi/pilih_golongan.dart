@@ -6,6 +6,9 @@ import 'package:includemy/app/styles/color_styles.dart';
 import '../widgets/segmented_options.dart';
 import '../widgets/buttons.dart';
 import './pilih_pekerjaan_impian.dart';
+import 'package:get/get.dart';
+import 'package:includemy/controller/register_controller.dart';
+import 'package:includemy/services/authentication_services.dart';
 
 class PilihGolonganPage extends StatefulWidget {
   const PilihGolonganPage({super.key});
@@ -15,6 +18,9 @@ class PilihGolonganPage extends StatefulWidget {
 }
 
 class _PilihGolonganPageState extends State<PilihGolonganPage> {
+  String _userDisability = '';
+  var _choiceIndex;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +55,73 @@ class _PilihGolonganPageState extends State<PilihGolonganPage> {
                   ),
                 ),
                 SizedBox(height: 32,),
-                SegmentedOption(),
+                Container(
+                  decoration: BoxDecoration(
+                    color: ColorStyles.greyBg,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  width: MediaQuery.of(context).size.width,
+                  height: 52,
+                  padding: EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            if (_choiceIndex != 0) {
+                              setState(() {
+                                _choiceIndex = 0;
+                                _userDisability = "Tuna Rungu";
+                                print("disabilitas:" + _userDisability);
+                              });
+                            }
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: _choiceIndex == 0 ? ColorStyles.white : ColorStyles.greyBg,
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Tuna Rungu",
+                              style: GoogleFonts.outfit(
+                                color: _choiceIndex == 0 ? ColorStyles.black : ColorStyles.greyText,
+                                fontSize: 14,
+                              ),
+                            ),
+                          )
+                        ),
+                      ),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            if (_choiceIndex != 1) {
+                              setState(() {
+                                _choiceIndex = 1;
+                                _userDisability = "Tuna Daksa";
+                              });
+                              print("disabilitas:" + _userDisability);
+                            }
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: _choiceIndex == 1 ? ColorStyles.white :  ColorStyles.greyBg,
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Tuna Daksa",
+                              style: GoogleFonts.outfit(
+                                color: _choiceIndex == 1 ? ColorStyles.black : ColorStyles.greyText,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
                 SizedBox(height: 32,),
                 Expanded(    
                   child: Align(
@@ -57,24 +129,10 @@ class _PilihGolonganPageState extends State<PilihGolonganPage> {
                     child: Buttons(
                       text: "Selanjutnya", 
                       onClicked: (){
-                        Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                            transitionDuration: Duration(milliseconds: 300),
-                            transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-                              return SlideTransition(
-                                position: Tween<Offset>(
-                                  begin: const Offset(1.0, 0.0),
-                                  end: Offset.zero,
-                                ).animate(animation),
-                                child: child,
-                              );
-                            },
-                            pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-                              return DreamJobsPage();
-                            },
-                          ),
+                        RegisterController.instance.updateRegistrationData(
+                          dissability: _userDisability,
                         );
+                        Get.to(DreamJobsPage());
                       }, 
                       width: MediaQuery.of(context).size.width, 
                       backgroundColor: ColorStyles.primary, 
