@@ -54,9 +54,11 @@ class _JobDetailPageState extends State<JobDetailPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 50),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+            Container(
+              decoration: BoxDecoration(
+                color: ColorStyles.white,
+              ),
+              padding: EdgeInsets.only(left: 16, right: 16, top: 50, bottom: 16),
               child: Row(
                 children: [
                   GestureDetector(
@@ -74,7 +76,7 @@ class _JobDetailPageState extends State<JobDetailPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Detail Mentoring",
+                          "Detail Pekerjaan",
                           style: GoogleFonts.outfit(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
@@ -82,7 +84,7 @@ class _JobDetailPageState extends State<JobDetailPage> {
                           ),
                         ),
                         Text(
-                          "Detail sesi mentoring",
+                          "Detail lengkap pekerjaan",
                           style: GoogleFonts.outfit(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
@@ -100,17 +102,25 @@ class _JobDetailPageState extends State<JobDetailPage> {
             ),
             SizedBox(height: 16),
             Container(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               decoration: BoxDecoration(
                 color: ColorStyles.white,
               ),
               child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: ColorStyles.greyOutline, width: 1),
+                  borderRadius: BorderRadius.circular(8),
+                ),
                 padding: EdgeInsets.all(12),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
-                        SvgPicture.asset(widget.jobImage),
+                        SvgPicture.asset(widget.jobImage, height: 56,),
+                        SizedBox(width: 12,),
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               widget.jobTitle,
@@ -166,21 +176,22 @@ class _JobDetailPageState extends State<JobDetailPage> {
                           TextSpan(
                             text: "Rp",
                             style: GoogleFonts.outfit(
-                              fontSize: 14,
+                              fontSize: 12,
                               color: ColorStyles.greyText,
                             ),
                           ),
                           TextSpan(
                             text: widget.salary,
                             style: GoogleFonts.outfit(
-                              fontSize: 14,
+                              fontSize: 16,
                               color: ColorStyles.black,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                           TextSpan(
                             text: "/bulan",
                             style: GoogleFonts.outfit(
-                              fontSize: 14,
+                              fontSize: 12,
                               color: ColorStyles.greyText,
                             ),
                           )
@@ -191,15 +202,15 @@ class _JobDetailPageState extends State<JobDetailPage> {
                     Row(
                       children: [
                         Icon(
-                          Icons.person,
-                          size: 16,
+                          Icons.person_outline_outlined,
+                          size: 20,
                           color: ColorStyles.greyText,
                         ),
                         SizedBox(width: 8),
                         Text(
                           "${widget.jmlPelamar} Pelamar",
                           style: GoogleFonts.outfit(
-                            fontSize: 14,
+                            fontSize: 12,
                             color: ColorStyles.greyText,
                           ),
                         ),
@@ -208,16 +219,12 @@ class _JobDetailPageState extends State<JobDetailPage> {
                     SizedBox(height: 8),
                     Row(
                       children: [
-                        Icon(
-                          Icons.local_post_office,
-                          size: 16,
-                          color: ColorStyles.greyText,
-                        ),
+                        SvgPicture.asset('assets/kantor.svg'),
                         SizedBox(width: 8),
                         Text(
                           widget.companyInfo,
                           style: GoogleFonts.outfit(
-                            fontSize: 14,
+                            fontSize: 12,
                             color: ColorStyles.greyText,
                           ),
                         ),
@@ -226,12 +233,12 @@ class _JobDetailPageState extends State<JobDetailPage> {
                     SizedBox(height: 8),
                     Row(
                       children: [
-                        SvgPicture.asset('assets/graph.svg', height: 16,),
+                        SvgPicture.asset('assets/graph.svg', height: 20,),
                         SizedBox(width: 8),
                         Text(
                           widget.relatedField,
                           style: GoogleFonts.outfit(
-                            fontSize: 14,
+                            fontSize: 12,
                             color: ColorStyles.greyText,
                           ),
                         ),
@@ -277,7 +284,7 @@ class _JobDetailPageState extends State<JobDetailPage> {
                         Text(
                           widget.updatedAt,
                           style: GoogleFonts.outfit(
-                            fontSize: 14,
+                            fontSize: 12,
                             color: ColorStyles.greyText,
                           ),
                         ),
@@ -396,16 +403,38 @@ class _JobDetailPageState extends State<JobDetailPage> {
                           ],
                         ),
                       ),
+                      SizedBox(height: 16),
+                      SingleChildScrollView(
+                        child: currentTab == 0 ? teksTentang() : widgetTautan(),
+                      ),
                     ],
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 16),
-            SingleChildScrollView(
-              child: currentTab == 0 ? teksTentang() : widgetTautan(),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 84,
+        padding: EdgeInsets.all(16),
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          color: ColorStyles.white,
+          boxShadow: [
+            BoxShadow(
+              color: ColorStyles.greyOutline,
+              offset: Offset(0, -1),
+              blurRadius: 8,
             ),
           ],
+        ),
+        child: Buttons(
+          text: "Daftar", 
+          onClicked: (){}, 
+          width: MediaQuery.of(context).size.width, 
+          backgroundColor: ColorStyles.primary, 
+          fontColor: ColorStyles.white,
         ),
       )
     );
