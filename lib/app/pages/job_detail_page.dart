@@ -45,8 +45,23 @@ List<List<String>> panduanAttachments = [
   ["pdf", "Panduan Pendaftaran.pdf", "4.27 MB",],
 ];
 
+List<String> ekspektasiGaji = [
+  "Rp500.000 - Rp1.000.000",
+  "Rp1.000.000 - Rp2.000.000",
+  "Rp2.000.000 - Rp3.000.000",
+  "Rp3.000.000 - Rp4.000.000",
+  "Rp4.000.000 - Rp5.000.000",
+  "Rp5.000.000 - Rp6.000.000",
+  "Rp6.000.000 - Rp7.000.000",
+  "Rp7.000.000 - Rp8.000.000",
+  "Rp8.000.000 - Rp9.000.000",
+  "Rp9.000.000 - Rp10.000.000",
+];
+
 class _JobDetailPageState extends State<JobDetailPage> {
   int currentTab = 0;
+  String? gajiMinimum = "";
+  String? gajiMaksimum = "";
   
   @override
   Widget build(BuildContext context) {
@@ -430,8 +445,100 @@ class _JobDetailPageState extends State<JobDetailPage> {
           ],
         ),
         child: Buttons(
-          text: "Daftar", 
-          onClicked: (){}, 
+          text: "Lamar", 
+          onClicked: (){
+            showModalBottomSheet(
+              context: context, 
+              builder: (BuildContext context) {
+                return Container(
+                  decoration: BoxDecoration(
+                    color: ColorStyles.white
+                  ),
+                  padding: EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Lamar Posisi ${widget.jobTitle}",
+                            style: GoogleFonts.outfit(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: ColorStyles.black,
+                            ),
+                          ),
+                          Icon(
+                            Icons.close,
+                            color: ColorStyles.greyText,
+                            size: 20,
+                          )
+                        ],
+                      ),
+                      SizedBox(height: 16,),
+                      LinearProgressIndicator(
+                        value: 0.5,
+                        backgroundColor: ColorStyles.greyOutline,
+                        valueColor: AlwaysStoppedAnimation<Color>(ColorStyles.primary),
+                      ),
+                      SizedBox(height: 16,),
+                      Text(
+                        "Ekspektasi Gaji Bulanan",
+                        style: GoogleFonts.outfit(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: ColorStyles.black,
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: ColorStyles.greyOutline),
+                          borderRadius: BorderRadius.circular(8)
+                        ),
+                        padding: EdgeInsets.all(8),
+                        height: 44,
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.work_outline_outlined,
+                              size: 16,
+                              color: ColorStyles.greyText,
+                            ),
+                            SizedBox(width:10),
+                            Expanded(
+                              child: DropdownButton<String>(
+                              hint: Text("Gaji Minimal"),
+                              items: ekspektasiGaji.map((String gaji) {
+                                return DropdownMenuItem<String>(
+                                  value: gaji,
+                                  child: Text(gaji),
+                                );
+                              }).toList(),
+                              value: gajiMinimum,
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  gajiMinimum = newValue;
+                                });
+                              },
+                              isExpanded: true, 
+                              style: GoogleFonts.outfit(
+                                fontSize: 14,
+                                color: ColorStyles.greyText,
+                              ), 
+                              underline: Container(), 
+                              itemHeight: kMinInteractiveDimension,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                );  
+              }
+            );
+          }, 
           width: MediaQuery.of(context).size.width, 
           backgroundColor: ColorStyles.primary, 
           fontColor: ColorStyles.white,
