@@ -26,7 +26,7 @@ class AuthenticationServices {
           "name": name,
           "email": email,
           "password": password,
-          "born": born,
+          "born": born.toUtc().toIso8601String(),
           "gender": gender,
           "lastjob": lastjob,
           "lastedu": lastedu,

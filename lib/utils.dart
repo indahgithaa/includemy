@@ -13,5 +13,4 @@ class Utils {
   }
 
   static const baseUrl = 'https://includemy2-ca3db8609df9.herokuapp.com';
-  static const apiAyang = 'https://mager-spot-api-v54ppgzx2a-et.a.run.app/api/v1';
 }

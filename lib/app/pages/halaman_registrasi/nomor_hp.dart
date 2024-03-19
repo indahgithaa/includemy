@@ -128,7 +128,7 @@ class _MasukkanNomorHPPage extends State<MasukkanNomorHpPage> {
                     print(RegisterController.instance.nameController.text);
                     print(RegisterController.instance.emailController.text);
                     print(RegisterController.instance.passwordController.text);
-                    print(RegisterController.instance.birthdateController.text);
+                    print(DateTime.parse(RegisterController.instance.birthdateController.text).toUtc().toIso8601String());
                     print(RegisterController.instance.jenisKelamin.value);
                     print(RegisterController.instance.pekerjaanTerakhir.value);
                     print(RegisterController.instance.pendidikanTerakhir.value);
