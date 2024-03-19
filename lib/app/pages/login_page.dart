@@ -126,10 +126,11 @@ class _LoginPageState extends State<LoginPage> {
                 Buttons(
                   text: "Masuk", 
                   onClicked: (){
-                    AuthenticationServices().login(
-                      email: emailController.text, 
-                      password: passwordController.text
-                    );
+                    // AuthenticationServices().login(
+                    //   email: emailController.text, 
+                    //   password: passwordController.text
+                    // );
+                    Get.to(() => AfterLogin());
                   }, 
                   width: MediaQuery.of(context).size.width, 
                   backgroundColor: ColorStyles.primary, 

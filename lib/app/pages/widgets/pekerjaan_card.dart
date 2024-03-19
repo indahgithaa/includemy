@@ -36,148 +36,150 @@ class PekerjaanCards extends StatefulWidget {
 class _PekerjaanCardsState extends State<PekerjaanCards> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(left: 12, top: 12, right: 12),
-      decoration: BoxDecoration(
-        color: ColorStyles.white,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: ColorStyles.greyOutline, width: 1)
-      ),
-      width: widget.width,
-      height: 155,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SvgPicture.asset(
-            widget.jobImage,
-            width: 40,
-            height: 40,
-          ),
-          SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      widget.jobTitle,
-                      style: GoogleFonts.outfit(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: ColorStyles.black,
-                      ),
-                    ),
-                    SvgPicture.asset('assets/bookmark.svg'),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      widget.companyName,
-                      style: GoogleFonts.outfit(
-                        fontSize: 12,
-                        color: ColorStyles.greyText,
-                      ),
-                    ),
-                    Text(' ·'),
-                    SvgPicture.asset('assets/verified.svg'),
-                    Text(
-                      "Verified",
-                      style: GoogleFonts.outfit(
-                        fontSize: 12,
-                        color: ColorStyles.primary,
-                      ),
-                    )
-                  ],
-                ),
-                Text(
-                  widget.location,
-                  style: GoogleFonts.outfit(
-                    fontSize: 12,
-                    color: ColorStyles.greyText,
-                  ),
-                ),
-                SizedBox(height: 16,),
-                RichText(
-                  text: TextSpan(
+    return GestureDetector(
+      onTap: widget.onClicked,
+      child: Container(
+        padding: EdgeInsets.only(left: 12, top: 12, right: 12),
+        decoration: BoxDecoration(
+          color: ColorStyles.white,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: ColorStyles.greyOutline, width: 1)
+        ),
+        width: widget.width,
+        height: 155,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SvgPicture.asset(
+              widget.jobImage,
+              width: 40,
+              height: 40,
+            ),
+            SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      TextSpan(
-                        text: "Rp",
+                      Text(
+                        widget.jobTitle,
                         style: GoogleFonts.outfit(
                           fontSize: 14,
-                          color: ColorStyles.greyText,
-                        ),
-                      ),
-                      TextSpan(
-                        text: widget.salary,
-                        style: GoogleFonts.outfit(
-                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
                           color: ColorStyles.black,
                         ),
                       ),
-                      TextSpan(
-                        text: "/bulan",
+                      SvgPicture.asset('assets/bookmark.svg'),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        widget.companyName,
                         style: GoogleFonts.outfit(
-                          fontSize: 14,
+                          fontSize: 12,
                           color: ColorStyles.greyText,
+                        ),
+                      ),
+                      Text(' ·'),
+                      SvgPicture.asset('assets/verified.svg'),
+                      Text(
+                        "Verified",
+                        style: GoogleFonts.outfit(
+                          fontSize: 12,
+                          color: ColorStyles.primary,
                         ),
                       )
                     ],
                   ),
-                ),
-                SizedBox(height: 16,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
+                  Text(
+                    widget.location,
+                    style: GoogleFonts.outfit(
+                      fontSize: 12,
+                      color: ColorStyles.greyText,
+                    ),
+                  ),
+                  SizedBox(height: 16,),
+                  RichText(
+                    text: TextSpan(
                       children: [
-                        Container(
-                          padding: EdgeInsets.all(4),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: ColorStyles.greyOutline, width: 1),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Text(
-                            widget.jobType,
-                            style: GoogleFonts.outfit(
-                              fontSize: 12,
-                              color: ColorStyles.greyText,
-                            ),
+                        TextSpan(
+                          text: "Rp",
+                          style: GoogleFonts.outfit(
+                            fontSize: 14,
+                            color: ColorStyles.greyText,
                           ),
                         ),
-                        SizedBox(width: 8),
-                        Container(
-                          padding: EdgeInsets.all(4),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: ColorStyles.greyOutline, width: 1),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Text(
-                            widget.disabilitasType,
-                            style: GoogleFonts.outfit(
-                              fontSize: 12,
-                              color: ColorStyles.greyText,
-                            ),
+                        TextSpan(
+                          text: widget.salary,
+                          style: GoogleFonts.outfit(
+                            fontSize: 14,
+                            color: ColorStyles.black,
                           ),
                         ),
+                        TextSpan(
+                          text: "/bulan",
+                          style: GoogleFonts.outfit(
+                            fontSize: 14,
+                            color: ColorStyles.greyText,
+                          ),
+                        )
                       ],
                     ),
-                    Text(
-                      widget.updatedAt,
-                      style: GoogleFonts.outfit(
-                        fontSize: 14,
-                        color: ColorStyles.greyText,
+                  ),
+                  SizedBox(height: 16,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: ColorStyles.greyOutline, width: 1),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Text(
+                              widget.jobType,
+                              style: GoogleFonts.outfit(
+                                fontSize: 12,
+                                color: ColorStyles.greyText,
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 8),
+                          Container(
+                            padding: EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: ColorStyles.greyOutline, width: 1),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Text(
+                              widget.disabilitasType,
+                              style: GoogleFonts.outfit(
+                                fontSize: 12,
+                                color: ColorStyles.greyText,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-          )
-        ],
+                      Text(
+                        widget.updatedAt,
+                        style: GoogleFonts.outfit(
+                          fontSize: 14,
+                          color: ColorStyles.greyText,
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
