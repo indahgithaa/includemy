@@ -91,6 +91,7 @@ class _DreamJobsPageState extends State<DreamJobsPage> {
                 child: Buttons(
                   text: "Isi Biodata", 
                   onClicked: (){
+                    print(userPreference);
                     RegisterController.instance.updateRegistrationData(
                       preference: userPreference,
                     );

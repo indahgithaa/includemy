@@ -141,7 +141,6 @@ class _DetailSertificatePageState extends State<DetailSertificatePage> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       padding: EdgeInsets.all(12),
-                      height: 230,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

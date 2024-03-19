@@ -137,6 +137,7 @@ class _ApplyJobPageState extends State<ApplyJobPage> {
                           jobType: pekerjaanList[index][5],
                           disabilitasType: pekerjaanList[index][6],
                           updatedAt: pekerjaanList[index][7],
+                          onClicked: (){},
                         ),
                       );
                     },

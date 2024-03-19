@@ -106,16 +106,16 @@ class _MasukkanNomorHPPage extends State<MasukkanNomorHpPage> {
                       contact: phoneNumberController.text,
                     );
                     AuthenticationServices().register(
-                      name: RegisterController().nameController.text, 
-                      email: RegisterController().emailController.text, 
-                      password: RegisterController().passwordController.text,
-                      born: RegisterController().birthdateController.text,
-                      gender: RegisterController().jenisKelamin.value,
-                      lastjob: RegisterController().pekerjaanTerakhir.value,
-                      lastedu: RegisterController().pendidikanTerakhir.value,
-                      contact: RegisterController().phoneController.text,
-                      preference: RegisterController().preferenceJob.value,
-                      dissability: RegisterController().disabilitasType.value,
+                      name: RegisterController.instance.nameController.text, 
+                      email: RegisterController.instance.emailController.text, 
+                      password: RegisterController.instance.passwordController.text,
+                      born: DateTime.parse(RegisterController.instance.birthdateController.text),
+                      gender: RegisterController.instance.jenisKelamin.value,
+                      lastjob: RegisterController.instance.pekerjaanTerakhir.value,
+                      lastedu: RegisterController.instance.pendidikanTerakhir.value,
+                      contact: phoneNumberController.text,
+                      preference: RegisterController.instance.preferenceJob.value,
+                      dissability: RegisterController.instance.disabilitasType.value,
                     );
                   }, 
                   width: MediaQuery.of(context).size.width, 
@@ -124,7 +124,18 @@ class _MasukkanNomorHPPage extends State<MasukkanNomorHpPage> {
                 ),
                 Buttons(
                   text: "< Sebelumnya", 
-                  onClicked: (){}, 
+                  onClicked: (){
+                    print(RegisterController.instance.nameController.text);
+                    print(RegisterController.instance.emailController.text);
+                    print(RegisterController.instance.passwordController.text);
+                    print(RegisterController.instance.birthdateController.text);
+                    print(RegisterController.instance.jenisKelamin.value);
+                    print(RegisterController.instance.pekerjaanTerakhir.value);
+                    print(RegisterController.instance.pendidikanTerakhir.value);
+                    print(RegisterController.instance.phoneController.text);
+                    print(RegisterController.instance.preferenceJob.value);
+                    print(RegisterController.instance.disabilitasType.value);
+                  }, 
                   width: MediaQuery.of(context).size.width, 
                   backgroundColor: ColorStyles.white, 
                   fontColor: ColorStyles.greyText,

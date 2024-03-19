@@ -13,6 +13,7 @@ class PekerjaanCards extends StatefulWidget {
   final String jobType;
   final String disabilitasType;
   final String updatedAt;
+  final VoidCallback onClicked;
 
   const PekerjaanCards({
     Key? key,
@@ -25,6 +26,7 @@ class PekerjaanCards extends StatefulWidget {
     required this.jobType,
     required this.disabilitasType,
     required this.updatedAt,
+    required this.onClicked,
   });
 
   @override
@@ -56,6 +58,7 @@ class _PekerjaanCardsState extends State<PekerjaanCards> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

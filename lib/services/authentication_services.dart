@@ -11,7 +11,7 @@ class AuthenticationServices {
     required String name,
     required String email,
     required String password,
-    required String born,
+    required DateTime born,
     required String gender,
     required String lastjob,
     required String lastedu,
@@ -21,7 +21,7 @@ class AuthenticationServices {
   }) async {
     try {
       final response = await _dio.post(
-        Utils.baseUrl + '/signin',
+        Utils.baseUrl + '/register',
         data: {
           "name": name,
           "email": email,
@@ -38,8 +38,28 @@ class AuthenticationServices {
       print(response.data);
       Utils.showSnackBar("Registrasi berhasil");
     } catch (e) {
-      print(e);
+      print('Request failed with error: $e');
       Utils.showSnackBar("Registrasi gagal");
+    }
+  }
+
+  Future<void> login({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final response = await _dio.post(
+        Utils.baseUrl + '/login',
+        data: {
+          "email": email,
+          "password": password,
+        }
+      );
+      print(response.data);
+      Utils.showSnackBar("Login berhasil");
+    } catch (e) {
+      print('Request failed with error: $e');
+      Utils.showSnackBar("Login gagal");
     }
   }
 }

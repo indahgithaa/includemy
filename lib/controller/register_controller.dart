@@ -22,7 +22,7 @@ class RegisterController extends GetxController {
     String? name,
     String? email,
     String? password,
-    String? born,
+    DateTime? born,
     String? gender,
     String? lastjob,
     String? lastedu,
@@ -33,7 +33,7 @@ class RegisterController extends GetxController {
     if (name != null) nameController.text = name;
     if (email != null) emailController.text = email;
     if (password != null) passwordController.text = password;
-    if (born != null) birthdateController.text = born;
+    if (born != null) birthdateController.text = born.toIso8601String();
     if (gender != null) jenisKelamin.value = gender;
     if (lastjob != null) pekerjaanTerakhir.value = lastjob;
     if (lastedu != null) pendidikanTerakhir.value = lastedu;

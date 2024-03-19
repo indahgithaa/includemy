@@ -6,6 +6,7 @@ import 'package:includemy/app/pages/halaman_registrasi/pilih_pekerjaan_impian.da
 import 'package:includemy/app/styles/color_styles.dart';
 import '../widgets/text_fields.dart';
 import '../widgets/password_fields.dart';
+import 'package:intl/intl.dart';
 import '../widgets/buttons.dart';
 import '../widgets/pageViewIndicator.dart';
 import './pilih_pekerjaan_terakhir.dart';
@@ -57,7 +58,7 @@ class _PilihTanggalLshirPageState extends State<PilihTanggalLahirPage> {
                 SizedBox(height: 8,),
                 TextFields(
                   textEditingController: birthDateController, 
-                  text: "DD / MM / YY", 
+                  text: "YYYY-MM-dd", 
                   textInputType: TextInputType.datetime, 
                   icon: Icon(Icons.calendar_today_outlined, color: ColorStyles.greyText, size: 16,)
                 ),
@@ -115,8 +116,10 @@ class _PilihTanggalLshirPageState extends State<PilihTanggalLahirPage> {
                 Buttons(
                   text: "Selanjutnya", 
                   onClicked: (){
+                    print(_selectedGender);
+                    print(birthDateController.text);
                      RegisterController.instance.updateRegistrationData(
-                      born: birthDateController.text,
+                      born: DateTime.parse(birthDateController.text),
                       gender: _selectedGender,
                      );
                      Get.to(PilihPekerjaanTerakhir());
