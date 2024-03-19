@@ -533,6 +533,48 @@ class _JobDetailPageState extends State<JobDetailPage> {
                           ],
                         ),
                       ),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: ColorStyles.greyOutline),
+                          borderRadius: BorderRadius.circular(8)
+                        ),
+                        padding: EdgeInsets.all(8),
+                        height: 44,
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.work_outline_outlined,
+                              size: 16,
+                              color: ColorStyles.greyText,
+                            ),
+                            SizedBox(width:10),
+                            Expanded(
+                              child: DropdownButton<String>(
+                              hint: Text("Gaji Minimal"),
+                              items: ekspektasiGaji.map((String gaji) {
+                                return DropdownMenuItem<String>(
+                                  value: gaji,
+                                  child: Text(gaji),
+                                );
+                              }).toList(),
+                              value: gajiMinimum,
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  gajiMinimum = newValue;
+                                });
+                              },
+                              isExpanded: true, 
+                              style: GoogleFonts.outfit(
+                                fontSize: 14,
+                                color: ColorStyles.greyText,
+                              ), 
+                              underline: Container(), 
+                              itemHeight: kMinInteractiveDimension,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 );  
