@@ -45,23 +45,23 @@ List<List<String>> panduanAttachments = [
   ["pdf", "Panduan Pendaftaran.pdf", "4.27 MB",],
 ];
 
-List<String> ekspektasiGaji = [
-  "Rp500.000 - Rp1.000.000",
-  "Rp1.000.000 - Rp2.000.000",
-  "Rp2.000.000 - Rp3.000.000",
-  "Rp3.000.000 - Rp4.000.000",
-  "Rp4.000.000 - Rp5.000.000",
-  "Rp5.000.000 - Rp6.000.000",
-  "Rp6.000.000 - Rp7.000.000",
-  "Rp7.000.000 - Rp8.000.000",
-  "Rp8.000.000 - Rp9.000.000",
-  "Rp9.000.000 - Rp10.000.000",
-];
-
 class _JobDetailPageState extends State<JobDetailPage> {
   int currentTab = 0;
-  String? gajiMinimum = "";
-  String? gajiMaksimum = "";
+  String? _gajiMinimum;
+  String? _gajiMaksimum;
+
+  List<String> ekspektasiGaji = [
+    "Rp500.000 - Rp1.000.000",
+    "Rp1.000.000 - Rp2.000.000",
+    "Rp2.000.000 - Rp3.000.000",
+    "Rp3.000.000 - Rp4.000.000",
+    "Rp4.000.000 - Rp5.000.000",
+    "Rp5.000.000 - Rp6.000.000",
+    "Rp6.000.000 - Rp7.000.000",
+    "Rp7.000.000 - Rp8.000.000",
+    "Rp8.000.000 - Rp9.000.000",
+    "Rp9.000.000 - Rp10.000.000",
+  ];
   
   @override
   Widget build(BuildContext context) {
@@ -515,10 +515,10 @@ class _JobDetailPageState extends State<JobDetailPage> {
                                   child: Text(gaji),
                                 );
                               }).toList(),
-                              value: gajiMinimum,
+                              value: _gajiMinimum,
                               onChanged: (String? newValue) {
                                 setState(() {
-                                  gajiMinimum = newValue;
+                                  _gajiMinimum = newValue;
                                 });
                               },
                               isExpanded: true, 
@@ -550,17 +550,17 @@ class _JobDetailPageState extends State<JobDetailPage> {
                             SizedBox(width:10),
                             Expanded(
                               child: DropdownButton<String>(
-                              hint: Text("Gaji Minimal"),
+                              hint: Text("Gaji Maksimal"),
                               items: ekspektasiGaji.map((String gaji) {
                                 return DropdownMenuItem<String>(
                                   value: gaji,
                                   child: Text(gaji),
                                 );
                               }).toList(),
-                              value: gajiMinimum,
+                              value: _gajiMaksimum,
                               onChanged: (String? newValue) {
                                 setState(() {
-                                  gajiMinimum = newValue;
+                                  _gajiMaksimum = newValue;
                                 });
                               },
                               isExpanded: true, 
