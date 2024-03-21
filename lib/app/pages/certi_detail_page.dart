@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:includemy/app/pages/widgets/konfirmasi_sertifikasi_bottomsheet.dart';
 import 'package:video_player/video_player.dart';
 import './widgets/video_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -22,6 +23,8 @@ class DetailSertificatePage extends StatefulWidget {
     final String keahlian;
     final String tags;
     final String deskripsi;
+    final String jenisMedia;
+    final String jmlMateri;
 
   const DetailSertificatePage({
     Key? key,
@@ -39,6 +42,8 @@ class DetailSertificatePage extends StatefulWidget {
     required this.keahlian,
     required this.tags,
     required this.deskripsi,
+    required this.jenisMedia,
+    required this.jmlMateri,
   });
 
   @override
@@ -478,7 +483,17 @@ class _DetailSertificatePageState extends State<DetailSertificatePage> {
         ),
         child: Buttons(
           text: "Daftar", 
-          onClicked: (){}, 
+          onClicked: (){
+            showModalBottomSheet(
+              context: context, 
+              builder: (context){
+                return KonfirmasiMengikutiSertifikasi(
+                  sertifikasiTitle: widget.certiTitle, 
+                  jmlMateri: widget.jmlMateri, 
+                  jenisMedia: widget.jenisMedia);
+              }
+            );
+          }, 
           width: MediaQuery.of(context).size.width, 
           backgroundColor: ColorStyles.primary, 
           fontColor: ColorStyles.white,

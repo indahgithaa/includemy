@@ -3,15 +3,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:includemy/app/pages/widgets/buttons.dart';
 import 'package:includemy/app/styles/color_styles.dart';
 
-class MyBottomSheetContent extends StatefulWidget {
+class EkspektasiGajiBottomSheet extends StatefulWidget {
   final String jobTitle;
-  const MyBottomSheetContent({Key? key, required this.jobTitle}) : super(key: key);
+  const EkspektasiGajiBottomSheet({Key? key, required this.jobTitle}) : super(key: key);
 
   @override
-  _MyBottomSheetContentState createState() => _MyBottomSheetContentState();
+  _EkspektasiGajiBottomSheetState createState() => _EkspektasiGajiBottomSheetState();
 }
 
-class _MyBottomSheetContentState extends State<MyBottomSheetContent> {
+class _EkspektasiGajiBottomSheetState extends State<EkspektasiGajiBottomSheet> {
   String? _gajiMinimum;
   String? _gajiMaksimum;
 
@@ -120,7 +120,7 @@ class _MyBottomSheetContentState extends State<MyBottomSheetContent> {
                   onChanged: (newValue) {
                     setState(() {
                       _gajiMinimum = newValue;
-                      _currentSliderValue += 0.5;
+                      _currentSliderValue = _gajiMaksimum != null ? 1 : 0.5;
                     });
                   },
                   items: ekspektasiGaji.map((String gaji) {
@@ -179,7 +179,7 @@ class _MyBottomSheetContentState extends State<MyBottomSheetContent> {
                     onChanged: (String? newValue) {
                       setState(() {
                         _gajiMaksimum = newValue;
-                        _currentSliderValue += 0.5;
+                        _currentSliderValue = _gajiMinimum != null ? 1 : 0.5;
                       });
                     },
                     isExpanded: true, 

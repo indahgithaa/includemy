@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:includemy/app/styles/color_styles.dart';
 import './widgets/attachments.dart';
 import './widgets/buttons.dart';
-import './widgets/bottom_sheet.dart';
+import 'widgets/gaji_bottom_sheet.dart';
 
 class JobDetailPage extends StatefulWidget {
   final String jobImage;
@@ -451,7 +451,7 @@ class _JobDetailPageState extends State<JobDetailPage> {
             showModalBottomSheet(
               context: context, 
               builder: (context){
-                return MyBottomSheetContent(
+                return EkspektasiGajiBottomSheet(
                   jobTitle: widget.jobTitle,
                 );
               }
