@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:includemy/app/styles/color_styles.dart';
 import './widgets/attachments.dart';
 import './widgets/buttons.dart';
+import './widgets/bottom_sheet.dart';
 
 class JobDetailPage extends StatefulWidget {
   final String jobImage;
@@ -449,135 +450,10 @@ class _JobDetailPageState extends State<JobDetailPage> {
           onClicked: (){
             showModalBottomSheet(
               context: context, 
-              builder: (BuildContext context) {
-                return Container(
-                  decoration: BoxDecoration(
-                    color: ColorStyles.white
-                  ),
-                  padding: EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Lamar Posisi ${widget.jobTitle}",
-                            style: GoogleFonts.outfit(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: ColorStyles.black,
-                            ),
-                          ),
-                          Icon(
-                            Icons.close,
-                            color: ColorStyles.greyText,
-                            size: 20,
-                          )
-                        ],
-                      ),
-                      SizedBox(height: 16,),
-                      LinearProgressIndicator(
-                        value: 0.5,
-                        backgroundColor: ColorStyles.greyOutline,
-                        valueColor: AlwaysStoppedAnimation<Color>(ColorStyles.primary),
-                      ),
-                      SizedBox(height: 16,),
-                      Text(
-                        "Ekspektasi Gaji Bulanan",
-                        style: GoogleFonts.outfit(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: ColorStyles.black,
-                        ),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: ColorStyles.greyOutline),
-                          borderRadius: BorderRadius.circular(8)
-                        ),
-                        padding: EdgeInsets.all(8),
-                        height: 44,
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.work_outline_outlined,
-                              size: 16,
-                              color: ColorStyles.greyText,
-                            ),
-                            SizedBox(width:10),
-                            Expanded(
-                              child: DropdownButton<String>(
-                              hint: Text("Gaji Minimal"),
-                              items: ekspektasiGaji.map((String gaji) {
-                                return DropdownMenuItem<String>(
-                                  value: gaji,
-                                  child: Text(gaji),
-                                );
-                              }).toList(),
-                              value: _gajiMinimum,
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  _gajiMinimum = newValue;
-                                });
-                              },
-                              isExpanded: true, 
-                              style: GoogleFonts.outfit(
-                                fontSize: 14,
-                                color: ColorStyles.greyText,
-                              ), 
-                              underline: Container(), 
-                              itemHeight: kMinInteractiveDimension,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: ColorStyles.greyOutline),
-                          borderRadius: BorderRadius.circular(8)
-                        ),
-                        padding: EdgeInsets.all(8),
-                        height: 44,
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.work_outline_outlined,
-                              size: 16,
-                              color: ColorStyles.greyText,
-                            ),
-                            SizedBox(width:10),
-                            Expanded(
-                              child: DropdownButton<String>(
-                              hint: Text("Gaji Maksimal"),
-                              items: ekspektasiGaji.map((String gaji) {
-                                return DropdownMenuItem<String>(
-                                  value: gaji,
-                                  child: Text(gaji),
-                                );
-                              }).toList(),
-                              value: _gajiMaksimum,
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  _gajiMaksimum = newValue;
-                                });
-                              },
-                              isExpanded: true, 
-                              style: GoogleFonts.outfit(
-                                fontSize: 14,
-                                color: ColorStyles.greyText,
-                              ), 
-                              underline: Container(), 
-                              itemHeight: kMinInteractiveDimension,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                );  
+              builder: (context){
+                return MyBottomSheetContent(
+                  jobTitle: widget.jobTitle,
+                );
               }
             );
           }, 

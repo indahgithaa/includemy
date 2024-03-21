@@ -29,6 +29,8 @@ class _ApplyJobPageState extends State<ApplyJobPage> {
     ["assets/job-img1.svg", "Staff Marketing Operational", "InkSpace", "Malang, Jawa Timur", "2.000k", "Full Time", "Tuna Daksa", "2hr ago", "10", "1 - 50 Karyawan Tetap  • Konsultan Outsourcing", "Marketing, Business Analysis, Visualisasi", "Selamat datang di kesempatan berkarir yang menantang dan dinamis sebagai Staff Marketing Operational! Bergabunglah dengan tim kami yang berdedikasi untuk merancang dan menjalankan strategi pemasaran efektif. \n \n 🎯 Deskripsi Pekerjaan \n Pelaksanaan Pemasaran: Mengkoordinasikan dan melaksanakan kampanye pemasaran berbasis strategi yang telah ditetapkan."],
   ];
 
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
