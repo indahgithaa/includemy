@@ -153,8 +153,6 @@ class _SertifikasiPageState extends State<SertifikasiPage> {
                                   keahlian: sertifikasiList[index][11],
                                   tags: sertifikasiList[index][12],
                                   deskripsi: sertifikasiList[index][13],
-                                  jmlMateri: sertifikasiList[index][14],
-                                  jenisMedia: sertifikasiList[index][15],
                                 ),
                               ),
                             );

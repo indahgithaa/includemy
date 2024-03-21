@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:includemy/app/pages/widgets/buttons.dart';
+import 'package:includemy/app/pages/widgets/sukses_bottom_sheet.dart';
 import 'package:includemy/app/styles/color_styles.dart';
+import 'package:includemy/controller/bottomsheet_controller.dart';
 
 class KonfirmasiMengikutiSertifikasi extends StatefulWidget {
-  final String sertifikasiTitle;
-  final String jmlMateri;
-  final String jenisMedia;
-  const KonfirmasiMengikutiSertifikasi({Key? key, required this.sertifikasiTitle, required this.jmlMateri, required this.jenisMedia}) : super(key: key);
-
+  final String keahlian;
+  final String jmlPeserta;
+  final String relatedField;
+  const KonfirmasiMengikutiSertifikasi({Key? key, required this.keahlian, required this.jmlPeserta, required this.relatedField}) : super(key: key);
+ 
   @override
   _KonfirmasiMengikutiSertifikasiState createState() => _KonfirmasiMengikutiSertifikasiState();
 }
 
 class _KonfirmasiMengikutiSertifikasiState extends State<KonfirmasiMengikutiSertifikasi> {
+  final BottomSheetController bottomSheetController = Get.put(BottomSheetController());
+
+  @override
+  initState() {
+    bottomSheetController.setKonfirmasiShown(false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,12 +66,14 @@ class _KonfirmasiMengikutiSertifikasiState extends State<KonfirmasiMengikutiSert
           SizedBox(height: 16,),
           Row(
             children: [
-              SvgPicture.asset(
-                'assets/T-text.svg',
+              Icon(
+                Icons.person_outline_outlined,
+                color: ColorStyles.greyText,
+                size: 20,
               ),
               SizedBox(width: 8),
               Text(
-                "${widget.sertifikasiTitle}",
+                "${widget.jmlPeserta} Peserta",
                 style: GoogleFonts.outfit(
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
@@ -75,12 +86,12 @@ class _KonfirmasiMengikutiSertifikasiState extends State<KonfirmasiMengikutiSert
           Row(
             children: [
               SvgPicture.asset(
-                'assets/book.svg',
+                'assets/kantor.svg',
                 height: 20,
               ),
               SizedBox(width: 8),
               Text(
-                "${widget.jmlMateri} Materi",
+                "${widget.keahlian}",
                 style: GoogleFonts.outfit(
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
@@ -93,12 +104,12 @@ class _KonfirmasiMengikutiSertifikasiState extends State<KonfirmasiMengikutiSert
           Row(
             children: [
               SvgPicture.asset(
-                'assets/tembak.svg',
+                'assets/graph.svg',
                 height: 20,
               ),
               SizedBox(width: 8),
               Text(
-                "${widget.jenisMedia}",
+                "${widget.relatedField}",
                 style: GoogleFonts.outfit(
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
@@ -114,7 +125,19 @@ class _KonfirmasiMengikutiSertifikasiState extends State<KonfirmasiMengikutiSert
             backgroundColor: ColorStyles.primary,
             fontColor: ColorStyles.white,
             onClicked: (){
-
+              Navigator.pop(context);
+              if (!bottomSheetController.isKonfirmasiShown) {
+                showModalBottomSheet(
+                  context: context, 
+                  builder: (context){
+                    return SuksesMendaftarBottomSheet(
+                      judul: "Sukses Mendaftar",
+                      rincian: "Segala informasi akan disampaian pada tab tautan.",
+                    );
+                  }
+                );
+                bottomSheetController.setKonfirmasiShown(true);
+              }
             },
           )
         ],

@@ -23,8 +23,6 @@ class DetailSertificatePage extends StatefulWidget {
     final String keahlian;
     final String tags;
     final String deskripsi;
-    final String jenisMedia;
-    final String jmlMateri;
 
   const DetailSertificatePage({
     Key? key,
@@ -42,8 +40,6 @@ class DetailSertificatePage extends StatefulWidget {
     required this.keahlian,
     required this.tags,
     required this.deskripsi,
-    required this.jenisMedia,
-    required this.jmlMateri,
   });
 
   @override
@@ -488,9 +484,10 @@ class _DetailSertificatePageState extends State<DetailSertificatePage> {
               context: context, 
               builder: (context){
                 return KonfirmasiMengikutiSertifikasi(
-                  sertifikasiTitle: widget.certiTitle, 
-                  jmlMateri: widget.jmlMateri, 
-                  jenisMedia: widget.jenisMedia);
+                  keahlian: widget.keahlian,
+                  jmlPeserta: widget.peserta,
+                  relatedField: widget.relatedField,
+                );
               }
             );
           }, 
