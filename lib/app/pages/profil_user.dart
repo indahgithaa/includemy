@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:includemy/app/pages/widgets/joystick.dart';
+import 'package:includemy/app/pages/after_login.dart';
 import 'package:includemy/app/styles/color_styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import './widgets/buttons.dart';
@@ -41,9 +42,16 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
                 children: [
                   Row(
                     children: [
-                      GestureDetector(
-                        child: Icon(Icons.arrow_back_ios, color: ColorStyles.black, size: 12,),
-                        onTap: () => Navigator.pop(context),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: currentWidget == 0 && isSwitched ? ColorStyles.primary : Colors.transparent,
+                          )
+                        ),
+                        child: GestureDetector(
+                          child: Icon(Icons.arrow_back_ios, color: ColorStyles.black, size: 12,),
+                          onTap: () => Navigator.pop(context),
+                        ),
                       ),
                       SizedBox(width: 11,),
                       Column(
@@ -69,7 +77,14 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
                       ),
                     ]
                   ),
-                  SvgPicture.asset('assets/notification.svg'),
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: currentWidget == 1 && isSwitched ? ColorStyles.primary : Colors.transparent,
+                      )
+                    ),
+                    child: SvgPicture.asset('assets/notification.svg')
+                  ),
                 ],
               ),
             ),
@@ -82,42 +97,49 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          SvgPicture.asset('assets/profile-default.svg', height: 64,),
-                          SizedBox(width: 16,),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                widget.name,
-                                style: GoogleFonts.outfit(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  color: ColorStyles.black,
-                                ),
-                              ),
-                              Text(
-                                widget.email,
-                                style: GoogleFonts.outfit(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  color: ColorStyles.greyText,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: currentWidget == 2 && isSwitched ? ColorStyles.primary : Colors.transparent,
                       ),
-                       Icon(
-                        Icons.arrow_forward_ios,
-                        color: ColorStyles.black,
-                        size: 12,
-                      ),
-                    ],
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            SvgPicture.asset('assets/profile-default.svg', height: 64,),
+                            SizedBox(width: 16,),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  widget.name,
+                                  style: GoogleFonts.outfit(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: ColorStyles.black,
+                                  ),
+                                ),
+                                Text(
+                                  widget.email,
+                                  style: GoogleFonts.outfit(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                    color: ColorStyles.greyText,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                         Icon(
+                          Icons.arrow_forward_ios,
+                          color: ColorStyles.black,
+                          size: 12,
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(height: 16,),
                   Text(
@@ -129,87 +151,115 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
                     ),
                   ),
                   SizedBox(height: 16,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          SvgPicture.asset('assets/mode.svg'),
-                          SizedBox(width: 16,),
-                          Text(
-                            "Mode Disabilitas",
-                            style: GoogleFonts.outfit(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: ColorStyles.greyText,
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: currentWidget == 3 && isSwitched ? ColorStyles.primary : Colors.transparent,
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            SvgPicture.asset('assets/mode.svg'),
+                            SizedBox(width: 16,),
+                            Text(
+                              "Mode Disabilitas",
+                              style: GoogleFonts.outfit(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: ColorStyles.greyText,
+                              ),
                             ),
+                          ],
+                        ),
+                        Switch(
+                          activeColor: ColorStyles.primary,
+                          value: isSwitched,
+                          onChanged: (value) {
+                            setState(() {
+                              isSwitched = value;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  Divider(
+                    color: ColorStyles.greyBg,
+                    thickness: 1,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                          border: Border.all(
+                            color: currentWidget == 4 && isSwitched ? ColorStyles.primary : Colors.transparent,
                           ),
-                        ],
-                      ),
-                      Switch(
-                        activeColor: ColorStyles.primary,
-                        value: isSwitched,
-                        onChanged: (value) {
-                          setState(() {
-                            isSwitched = value;
-                          });
-                        },
-                      ),
-                    ],
+                        ),
+                    child: Row(
+                      children: [
+                        SvgPicture.asset('assets/lacak.svg'),
+                        SizedBox(width: 16,),
+                        Text(
+                          "Lacak Status Lamaran",
+                          style: GoogleFonts.outfit(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: ColorStyles.greyText,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   Divider(
                     color: ColorStyles.greyBg,
                     thickness: 1,
                   ),
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/lacak.svg'),
-                      SizedBox(width: 16,),
-                      Text(
-                        "Lacak Status Lamaran",
-                        style: GoogleFonts.outfit(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: ColorStyles.greyText,
+                  Container(
+                    decoration: BoxDecoration(
+                          border: Border.all(
+                            color: currentWidget == 5 && isSwitched ? ColorStyles.primary : Colors.transparent,
+                          ),
                         ),
-                      ),
-                    ],
+                    child: Row(
+                      children: [
+                        SvgPicture.asset('assets/boomark2.svg'),
+                        SizedBox(width: 16,),
+                        Text(
+                          "Unggahan Tersimpan",
+                          style: GoogleFonts.outfit(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: ColorStyles.greyText,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   Divider(
                     color: ColorStyles.greyBg,
                     thickness: 1,
                   ),
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/boomark2.svg'),
-                      SizedBox(width: 16,),
-                      Text(
-                        "Unggahan Tersimpan",
-                        style: GoogleFonts.outfit(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: ColorStyles.greyText,
+                  Container(
+                    decoration: BoxDecoration(
+                          border: Border.all(
+                            color: currentWidget == 6 && isSwitched ? ColorStyles.primary : Colors.transparent,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Divider(
-                    color: ColorStyles.greyBg,
-                    thickness: 1,
-                  ),
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/perlindungan.svg'),
-                      SizedBox(width: 16,),
-                      Text(
-                        "Perlindungan & Keamanan",
-                        style: GoogleFonts.outfit(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: ColorStyles.greyText,
+                    child: Row(
+                      children: [
+                        SvgPicture.asset('assets/perlindungan.svg'),
+                        SizedBox(width: 16,),
+                        Text(
+                          "Perlindungan & Keamanan",
+                          style: GoogleFonts.outfit(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: ColorStyles.greyText,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   Divider(
                     color: ColorStyles.greyBg,
@@ -236,73 +286,101 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
                     ),
                   ),
                   SizedBox(height: 16,),
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/tandatanya.svg'),
-                      SizedBox(width: 16,),
-                      Text(
-                        "Pusat Bantuan",
-                        style: GoogleFonts.outfit(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: ColorStyles.greyText,
+                  Container(
+                    decoration: BoxDecoration(
+                          border: Border.all(
+                            color: currentWidget == 7 && isSwitched ? ColorStyles.primary : Colors.transparent,
+                          ),
                         ),
-                      ),
-                    ],
+                    child: Row(
+                      children: [
+                        SvgPicture.asset('assets/tandatanya.svg'),
+                        SizedBox(width: 16,),
+                        Text(
+                          "Pusat Bantuan",
+                          style: GoogleFonts.outfit(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: ColorStyles.greyText,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   Divider(
                     color: ColorStyles.greyBg,
                     thickness: 1,
                   ),
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/peringatan.svg'),
-                      SizedBox(width: 16,),
-                      Text(
-                        "Syarat & Ketentuan",
-                        style: GoogleFonts.outfit(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: ColorStyles.greyText,
+                  Container(
+                    decoration: BoxDecoration(
+                          border: Border.all(
+                            color: currentWidget == 8 && isSwitched ? ColorStyles.primary : Colors.transparent,
+                          ),
                         ),
-                      ),
-                    ],
+                    child: Row(
+                      children: [
+                        SvgPicture.asset('assets/peringatan.svg'),
+                        SizedBox(width: 16,),
+                        Text(
+                          "Syarat & Ketentuan",
+                          style: GoogleFonts.outfit(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: ColorStyles.greyText,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   Divider(
                     color: ColorStyles.greyBg,
                     thickness: 1,
                   ),
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/delay.svg'),
-                      SizedBox(width: 16,),
-                      Text(
-                        "Histori Aktivitas",
-                        style: GoogleFonts.outfit(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: ColorStyles.greyText,
+                  Container(
+                    decoration: BoxDecoration(
+                          border: Border.all(
+                            color: currentWidget == 9 && isSwitched ? ColorStyles.primary : Colors.transparent,
+                          ),
                         ),
-                      ),
-                    ],
+                    child: Row(
+                      children: [
+                        SvgPicture.asset('assets/delay.svg'),
+                        SizedBox(width: 16,),
+                        Text(
+                          "Histori Aktivitas",
+                          style: GoogleFonts.outfit(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: ColorStyles.greyText,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   Divider(
                     color: ColorStyles.greyBg,
                     thickness: 1,
                   ),
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/message2.svg'),
-                      SizedBox(width: 16,),
-                      Text(
-                        "Preferensi Email",
-                        style: GoogleFonts.outfit(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: ColorStyles.greyText,
+                  Container(
+                    decoration: BoxDecoration(
+                          border: Border.all(
+                            color: currentWidget == 10 && isSwitched ? ColorStyles.primary : Colors.transparent,
+                          ),
                         ),
-                      ),
-                    ],
+                    child: Row(
+                      children: [
+                        SvgPicture.asset('assets/message2.svg'),
+                        SizedBox(width: 16,),
+                        Text(
+                          "Preferensi Email",
+                          style: GoogleFonts.outfit(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: ColorStyles.greyText,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   Divider(
                     color: ColorStyles.greyBg,
@@ -314,8 +392,98 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
           ]
         ),
       ),
-      floatingActionButton: isSwitched ? JoyStickWidget() : Container(),
+      floatingActionButton: isSwitched ? joyStickWidget() : Container(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    );
+  }
+
+  Widget joyStickWidget() {
+    return Container(
+      width: 224,
+      height: 80,
+      decoration: BoxDecoration(
+        color: Color(0xFF252525),
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: ColorStyles.greyText.withOpacity(0.1),
+            spreadRadius: 1,
+            blurRadius: 10,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      margin: EdgeInsets.only(bottom: 16),
+      padding: EdgeInsets.all(16),
+      child: Row(
+        children: [
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                currentWidget--;
+              });
+            },
+            child: Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                color: Color(0xFF363636),
+                borderRadius: BorderRadius.circular(100),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(left: 8),
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      color: ColorStyles.white,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(width: 24),
+          GestureDetector(
+            onTap: () {
+              if (currentWidget == 0) {
+                Get.to(AfterLogin());
+              } else if (currentWidget == 3) {
+                setState(() {
+                  isSwitched = false;
+                });
+              }
+            },
+            child: SvgPicture.asset('assets/middlebuttonjoystick.svg')
+          ),
+          SizedBox(width: 24),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                currentWidget++;
+              });
+            },
+            child: Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                color: Color(0xFF363636),
+                borderRadius: BorderRadius.circular(100),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    color: ColorStyles.white,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
