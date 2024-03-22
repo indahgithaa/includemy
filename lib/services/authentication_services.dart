@@ -8,7 +8,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthenticationServices extends GetxService {
   final Dio _dio = Dio();
-  final TokenStorage _tokenStorage = Get.find<TokenStorage>(); // Inject TokenStorage
   
   Future<void> register({
     required String name,
@@ -58,9 +57,16 @@ class AuthenticationServices extends GetxService {
           "password": password,
         }
       );
+      print(response.data); 
       final token = response.data['token']; // Extract token from response
-      await _tokenStorage.storeToken(token); // Store token using TokenStorage
-      Utils.showSnackBar("Login berhasil");
+      if (token != null && token is String) { // Check if token is not null and is a string
+      //store token using shared prefeerences
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('token', token);
+        Utils.showSnackBar("Login berhasil");
+      } else {
+        throw Exception('Invalid token');
+      }
     } catch (e) {
       print('Request failed with error: $e');
       Utils.showSnackBar("Login gagal");

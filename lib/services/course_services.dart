@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 class CourseServices extends GetxService {
   final Dio _dio = Dio();
-  final TokenStorage _tokenStorage = Get.put(TokenStorage()); // Inject TokenStorage
+  final TokenStorage _tokenStorage = Get.put(TokenStorage()); 
 
   Future<List<Course>> fetchCourses() async {
     try {

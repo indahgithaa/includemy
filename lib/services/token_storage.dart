@@ -9,10 +9,12 @@ class TokenStorage extends GetxService {
   }
 
   Future<void> storeToken(String token) async {
+    await init();
     await _prefs.setString('token', token);
   }
 
   Future<String?> getToken() async {
+    await init();
     return _prefs.getString('token');
   }
 }
