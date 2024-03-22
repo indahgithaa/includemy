@@ -188,7 +188,7 @@ class _DetailMentoringPageState extends State<DetailMentoringPage> {
                                       ),
                                       Row(
                                         children: [
-                                          SvgPicture.asset('assets/zaneta-img.svg'),
+                                          SvgPicture.asset('${widget.mentorImg}'),
                                           SizedBox(width: 8,),
                                           Text(
                                             widget.mentorName,

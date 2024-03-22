@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:includemy/app/pages/widgets/konfirmasi_sertifikasi_bottomsheet.dart';
+import 'package:includemy/app/pages/widgets/sukses_bottom_sheet.dart';
 import 'package:video_player/video_player.dart';
 import './widgets/video_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -483,10 +484,9 @@ class _DetailSertificatePageState extends State<DetailSertificatePage> {
             showModalBottomSheet(
               context: context, 
               builder: (context){
-                return KonfirmasiMengikutiSertifikasi(
-                  keahlian: widget.keahlian,
-                  jmlPeserta: widget.peserta,
-                  relatedField: widget.relatedField,
+                return SuksesMendaftarBottomSheet(
+                  judul: "Sukses Mendaftar",
+                  rincian: "Segala informasi akan disampaian pada tab tautan.",
                 );
               }
             );
