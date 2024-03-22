@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:includemy/app/styles/color_styles.dart';
 import 'package:includemy/controller/register_controller.dart';
+import 'package:includemy/utils.dart';
 import './widgets/text_fields.dart';
 import './widgets/password_fields.dart';
 import './widgets/buttons.dart';
@@ -126,10 +127,11 @@ class _LoginPageState extends State<LoginPage> {
                 Buttons(
                   text: "Masuk", 
                   onClicked: (){
-                    // AuthenticationServices().login(
-                    //   email: emailController.text, 
-                    //   password: passwordController.text
-                    // );
+                    AuthenticationServices().login(
+                      email: emailController.text, 
+                      password: passwordController.text
+                    );
+                    Utils.showSnackBar("Login berhasil");
                     Get.to(() => AfterLogin());
                   }, 
                   width: MediaQuery.of(context).size.width, 

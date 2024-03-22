@@ -1,12 +1,15 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:includemy/app/styles/color_styles.dart';
-import '../utils.dart';
+import 'package:includemy/model/course.dart';
+import 'package:includemy/services/token_storage.dart';
+import 'package:includemy/services/token_storage.dart';
+import 'package:includemy/utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class AuthenticationServices {
+class AuthenticationServices extends GetxService {
   final Dio _dio = Dio();
-
+  final TokenStorage _tokenStorage = Get.find<TokenStorage>(); // Inject TokenStorage
+  
   Future<void> register({
     required String name,
     required String email,
@@ -34,7 +37,7 @@ class AuthenticationServices {
           "preference": preference,
           "dissability": dissability,
         }
-    );
+      );
       print(response.data);
       Utils.showSnackBar("Registrasi berhasil");
     } catch (e) {
@@ -55,11 +58,40 @@ class AuthenticationServices {
           "password": password,
         }
       );
-      print(response.data);
+      final token = response.data['token']; // Extract token from response
+      await _tokenStorage.storeToken(token); // Store token using TokenStorage
       Utils.showSnackBar("Login berhasil");
     } catch (e) {
       print('Request failed with error: $e');
       Utils.showSnackBar("Login gagal");
+    }
+  }
+}
+class CourseServices extends GetxService {
+  final Dio _dio = Dio();
+  final TokenStorage _tokenStorage = Get.put(TokenStorage()); // Inject TokenStorage
+
+  Future<List<Course>> fetchCourses() async {
+    try {
+      await _tokenStorage.init(); // Initialize TokenStorage
+
+      final token = await _tokenStorage.getToken();
+      if (token == null) {
+        throw Exception('Token not found');
+      }
+
+      _dio.options.headers['Authorization'] = 'Bearer $token';
+
+      final response = await _dio.get('https://includemy2-ca3db8609df9.herokuapp.com/user/course');
+      if (response.statusCode == 200) {
+        final coursesJson = response.data['data'] as List<dynamic>;
+        final courses = coursesJson.map((json) => Course.fromJson(json)).toList();
+        return courses;
+      } else {
+        throw Exception('Failed to load courses');
+      }
+    } catch (e) {
+      throw Exception('Failed to load courses: $e');
     }
   }
 }
