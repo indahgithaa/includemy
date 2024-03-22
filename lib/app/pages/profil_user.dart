@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:includemy/app/pages/widgets/joystick.dart';
 import 'package:includemy/app/styles/color_styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import './widgets/buttons.dart';
@@ -20,6 +21,9 @@ class ProfilUserPage extends StatefulWidget {
 }
 
 class _ProfilUserPageState extends State<ProfilUserPage> {
+  int currentWidget = 0;
+  bool isSwitched = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,16 +130,30 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
                   ),
                   SizedBox(height: 16,),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SvgPicture.asset('assets/mode.svg'),
-                      SizedBox(width: 16,),
-                      Text(
-                        "Mode Disabilitas",
-                        style: GoogleFonts.outfit(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: ColorStyles.greyText,
-                        ),
+                      Row(
+                        children: [
+                          SvgPicture.asset('assets/mode.svg'),
+                          SizedBox(width: 16,),
+                          Text(
+                            "Mode Disabilitas",
+                            style: GoogleFonts.outfit(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: ColorStyles.greyText,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Switch(
+                        activeColor: ColorStyles.primary,
+                        value: isSwitched,
+                        onChanged: (value) {
+                          setState(() {
+                            isSwitched = value;
+                          });
+                        },
                       ),
                     ],
                   ),
@@ -295,7 +313,9 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
             ), 
           ]
         ),
-      )
+      ),
+      floatingActionButton: isSwitched ? JoyStickWidget() : Container(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
