@@ -10,8 +10,7 @@ class CourseServices extends GetxService {
 
   Future<List<Course>> fetchCourses() async {
     try {
-      await _tokenStorage.init(); // Initialize TokenStorage
-
+      await _tokenStorage.init(); 
       final token = await _tokenStorage.getToken();
       if (token == null) {
         throw Exception('Token not found');
@@ -21,9 +20,9 @@ class CourseServices extends GetxService {
 
       final response = await _dio.get('https://includemy2-ca3db8609df9.herokuapp.com/user/course');
       if (response.statusCode == 200) {
-        final coursesJson = response.data['data'] as List<dynamic>;
-        final courses = coursesJson.map((json) => Course.fromJson(json)).toList();
-        return courses;
+        final courseJson = response.data['data'] as Map<String, dynamic>;
+        final course = Course.fromJson(courseJson);
+        return [course];
       } else {
         throw Exception('Failed to load courses');
       }

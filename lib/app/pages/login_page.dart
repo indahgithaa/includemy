@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:includemy/app/styles/color_styles.dart';
 import 'package:includemy/controller/register_controller.dart';
 import 'package:includemy/utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import './widgets/text_fields.dart';
 import './widgets/password_fields.dart';
 import './widgets/buttons.dart';
@@ -26,6 +27,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool? rememberMe = false;
+  final SharedPreferences prefs = SharedPreferences.getInstance() as SharedPreferences;
 
   void toggleRememberMe(bool? newValue) => setState(() {
     rememberMe = newValue;
@@ -131,8 +133,9 @@ class _LoginPageState extends State<LoginPage> {
                       email: emailController.text, 
                       password: passwordController.text
                     );
-                    Utils.showSnackBar("Login berhasil");
                     Get.to(() => AfterLogin());
+                    //print stored to
+                    print(prefs.getString('token'));
                   }, 
                   width: MediaQuery.of(context).size.width, 
                   backgroundColor: ColorStyles.primary, 

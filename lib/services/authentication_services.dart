@@ -58,12 +58,13 @@ class AuthenticationServices extends GetxService {
         }
       );
       print(response.data); 
-      final token = response.data['token']; // Extract token from response
+      final token = response.data['data']['token']; // Extract token from response
       if (token != null && token is String) { // Check if token is not null and is a string
       //store token using shared prefeerences
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('token', token);
         Utils.showSnackBar("Login berhasil");
+        print(prefs.getString('token'));
       } else {
         throw Exception('Invalid token');
       }
@@ -73,6 +74,7 @@ class AuthenticationServices extends GetxService {
     }
   }
 }
+
 class CourseServices extends GetxService {
   final Dio _dio = Dio();
   final TokenStorage _tokenStorage = Get.put(TokenStorage()); // Inject TokenStorage
