@@ -58,8 +58,8 @@ class AuthenticationServices extends GetxService {
         }
       );
       print(response.data); 
-      final token = response.data['data']['token']; // Extract token from response
-      if (token != null && token is String) { // Check if token is not null and is a string
+      final token = response.data['data']['token']; 
+      if (token != null && token is String) {
       //store token using shared prefeerences
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('token', token);

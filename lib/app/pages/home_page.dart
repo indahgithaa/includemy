@@ -1,9 +1,16 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:includemy/app/pages/profil_user.dart';
 import 'package:includemy/app/pages/sertifikasi_page.dart';
 import 'package:includemy/app/styles/color_styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:includemy/controller/user_controller.dart';
+import 'package:includemy/model/user.dart';
+import 'package:includemy/services/user_info_services.dart';
+import 'package:includemy/utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import './widgets/search_fields.dart';
 import 'widgets/khusus_apply_job.dart';
 import './widgets/floating_btn.dart';
@@ -17,7 +24,7 @@ import './widgets/khusus_apply_job.dart';
 import './widgets/khusus_sertifikasi.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key,}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -26,7 +33,16 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentPage = 0;
   final _pageController = PageController();
-
+  final UserInfoServices _userInfoServices = UserInfoServices();
+  final UserController userController = Get.put(UserController());
+  User? userData;
+  
+  @override
+  void initState() {
+    super.initState();
+    fetchUserInfo();
+  }
+  
   List<List<String>> pekerjaanList = [
    ["assets/job-img1.svg", "Staff Marketing Operational", "InkSpace", "Malang, Jawa Timur", "2.000k", "Full Time", "Tuna Daksa", "2hr ago"],
    ["assets/job-img1.svg", "Staff Marketing Operational", "InkSpace", "Malang, Jawa Timur", "2.000k", "Full Time", "Tuna Daksa", "2hr ago"],
@@ -40,6 +56,41 @@ class _HomePageState extends State<HomePage> {
    ["assets/certi-img1.svg", "Certified Marketing", "InkSpace", "4.5", "100", "1 Bulan", "Marketing", "Sertifikasi", "Gratis", "2hr ago"],
    ["assets/certi-img1.svg", "Certified Marketing", "InkSpace", "4.5", "100", "1 Bulan", "Marketing", "Sertifikasi", "Gratis", "2hr ago"],
   ];
+
+  Future<void> fetchUserInfo() async {
+  try {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+
+    if (token == null) {
+      throw Exception('Token not found');
+    }
+
+    var _dio = Dio();
+    final response = await _dio.get(
+      Utils.baseUrl + '/user/profile/get-user',
+      options: Options(headers: {
+        'Authorization': 'Bearer $token',
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      print(response.data['data']);
+      setState(() {
+        userData = User.fromJson(response.data['data']);
+        username = response.data['data']['name'];
+        email = response.data['data']['email'];
+      });
+    } else {
+      throw Exception('Failed to load user info');
+    }
+  } catch (e) {
+    throw Exception('Failed to load user info: $e');
+  }
+}
+
+  String username = 'Demo BCC';
+  String email = 'demobcc@gmail.com';
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => ProfilUserPage()),
+                              MaterialPageRoute(builder: (context) => ProfilUserPage(name: username, email: email)),
                             );
                           },
                           child: Row(
@@ -76,8 +127,9 @@ class _HomePageState extends State<HomePage> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  //get username from shared preferences
                                   Text(
-                                    "Hai, ${"username"}!",
+                                    "Hai, ${username}",
                                     style: GoogleFonts.outfit(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500,

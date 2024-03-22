@@ -9,6 +9,7 @@ import 'package:includemy/app/pages/mentoring_page.dart';
 import 'package:includemy/app/pages/sertifikasi_page.dart';
 import 'package:includemy/app/pages/widgets/floating_btn.dart';
 import 'package:includemy/app/styles/color_styles.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AfterLogin extends StatefulWidget {
   const AfterLogin({super.key});
@@ -18,6 +19,18 @@ class AfterLogin extends StatefulWidget {
 }
 
 class _AfterLoginState extends State<AfterLogin> {
+  late SharedPreferences prefs;
+
+  @override
+  void initState() {
+    super.initState();
+    initializeSharedPreferences(); // Initialize SharedPreferences
+  }
+
+  void initializeSharedPreferences() async {
+    prefs = await SharedPreferences.getInstance(); // Await SharedPreferences initialization
+  }
+  
   int selectedIndex = 0;
   Widget _screen1 = HomePage();
   Widget _screen2 = SertifikasiPage();
@@ -85,7 +98,6 @@ class _AfterLoginState extends State<AfterLogin> {
           SizedBox(height: MediaQuery.of(context).size.height - 68),
           FloatingBtn(),
         ]),
-        
         ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );

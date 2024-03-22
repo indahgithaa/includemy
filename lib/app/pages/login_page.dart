@@ -27,12 +27,22 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool? rememberMe = false;
-  final SharedPreferences prefs = SharedPreferences.getInstance() as SharedPreferences;
+  late SharedPreferences prefs;
 
   void toggleRememberMe(bool? newValue) => setState(() {
     rememberMe = newValue;
   });
 
+  @override
+  void initState() {
+    super.initState();
+    initializeSharedPreferences(); // Initialize SharedPreferences
+  }
+
+  void initializeSharedPreferences() async {
+    prefs = await SharedPreferences.getInstance(); // Await SharedPreferences initialization
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
