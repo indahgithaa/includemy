@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:includemy/app/pages/widgets/konfirmasi_mentoring.dart';
 import 'package:video_player/video_player.dart';
 import './widgets/video_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -409,7 +410,16 @@ class _DetailMentoringPageState extends State<DetailMentoringPage> {
         ),
         child: Buttons(
           text: "Daftar", 
-          onClicked: (){}, 
+          onClicked: (){
+            showBottomSheet(
+              context: context, 
+              builder: (context) => KonfirmasiMengikutiMentoring(
+                keahlian: widget.relatedField,
+                jmlPeserta: "3",
+                relatedField: widget.relatedField,
+              )
+            );
+          }, 
           width: MediaQuery.of(context).size.width, 
           backgroundColor: ColorStyles.primary, 
           fontColor: ColorStyles.white,

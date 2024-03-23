@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:includemy/app/pages/after_login.dart';
 import 'package:includemy/app/styles/color_styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:includemy/controller/joystick_controller.dart';
 import './widgets/buttons.dart';
 import '../pages/login_page.dart';
 import '../pages/signup_page.dart';
@@ -25,6 +26,8 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
   int currentWidget = 0;
   bool isSwitched = false;
 
+  final JoyStickController joyStickController = Get.find<JoyStickController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,12 +48,12 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
                       Container(
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: currentWidget == 0 && isSwitched ? ColorStyles.primary : Colors.transparent,
+                            color: currentWidget == 0 && JoyStickController.isSwitched ? ColorStyles.primary : Colors.transparent,
                           )
                         ),
                         child: GestureDetector(
                           child: Icon(Icons.arrow_back_ios, color: ColorStyles.black, size: 12,),
-                          onTap: () => Navigator.pop(context),
+                          onTap: () => Get.to(AfterLogin()),
                         ),
                       ),
                       SizedBox(width: 11,),
@@ -80,7 +83,7 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
                   Container(
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: currentWidget == 1 && isSwitched ? ColorStyles.primary : Colors.transparent,
+                        color: currentWidget == 1 && JoyStickController.isSwitched ? ColorStyles.primary : Colors.transparent,
                       )
                     ),
                     child: SvgPicture.asset('assets/notification.svg')
@@ -100,7 +103,7 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
                   Container(
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: currentWidget == 2 && isSwitched ? ColorStyles.primary : Colors.transparent,
+                        color: currentWidget == 2 && JoyStickController.isSwitched ? ColorStyles.primary : Colors.transparent,
                       ),
                     ),
                     child: Row(
@@ -154,7 +157,7 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
                   Container(
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: currentWidget == 3 && isSwitched ? ColorStyles.primary : Colors.transparent,
+                        color: currentWidget == 3 && JoyStickController.isSwitched ? ColorStyles.primary : Colors.transparent,
                       ),
                     ),
                     child: Row(
@@ -176,10 +179,11 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
                         ),
                         Switch(
                           activeColor: ColorStyles.primary,
-                          value: isSwitched,
+                          value: JoyStickController.isSwitched,
                           onChanged: (value) {
                             setState(() {
-                              isSwitched = value;
+                              JoyStickController.isSwitched = value;
+                              currentWidget = 0;
                             });
                           },
                         ),
@@ -193,7 +197,7 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
                   Container(
                     decoration: BoxDecoration(
                           border: Border.all(
-                            color: currentWidget == 4 && isSwitched ? ColorStyles.primary : Colors.transparent,
+                            color: currentWidget == 4 && JoyStickController.isSwitched ? ColorStyles.primary : Colors.transparent,
                           ),
                         ),
                     child: Row(
@@ -218,7 +222,7 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
                   Container(
                     decoration: BoxDecoration(
                           border: Border.all(
-                            color: currentWidget == 5 && isSwitched ? ColorStyles.primary : Colors.transparent,
+                            color: currentWidget == 5 && JoyStickController.isSwitched ? ColorStyles.primary : Colors.transparent,
                           ),
                         ),
                     child: Row(
@@ -243,7 +247,7 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
                   Container(
                     decoration: BoxDecoration(
                           border: Border.all(
-                            color: currentWidget == 6 && isSwitched ? ColorStyles.primary : Colors.transparent,
+                            color: currentWidget == 6 && JoyStickController.isSwitched ? ColorStyles.primary : Colors.transparent,
                           ),
                         ),
                     child: Row(
@@ -289,7 +293,7 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
                   Container(
                     decoration: BoxDecoration(
                           border: Border.all(
-                            color: currentWidget == 7 && isSwitched ? ColorStyles.primary : Colors.transparent,
+                            color: currentWidget == 7 && JoyStickController.isSwitched ? ColorStyles.primary : Colors.transparent,
                           ),
                         ),
                     child: Row(
@@ -314,7 +318,7 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
                   Container(
                     decoration: BoxDecoration(
                           border: Border.all(
-                            color: currentWidget == 8 && isSwitched ? ColorStyles.primary : Colors.transparent,
+                            color: currentWidget == 8 && JoyStickController.isSwitched ? ColorStyles.primary : Colors.transparent,
                           ),
                         ),
                     child: Row(
@@ -339,7 +343,7 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
                   Container(
                     decoration: BoxDecoration(
                           border: Border.all(
-                            color: currentWidget == 9 && isSwitched ? ColorStyles.primary : Colors.transparent,
+                            color: currentWidget == 9 && JoyStickController.isSwitched ? ColorStyles.primary : Colors.transparent,
                           ),
                         ),
                     child: Row(
@@ -364,7 +368,7 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
                   Container(
                     decoration: BoxDecoration(
                           border: Border.all(
-                            color: currentWidget == 10 && isSwitched ? ColorStyles.primary : Colors.transparent,
+                            color: currentWidget == 10 && JoyStickController.isSwitched ? ColorStyles.primary : Colors.transparent,
                           ),
                         ),
                     child: Row(
@@ -392,7 +396,7 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
           ]
         ),
       ),
-      floatingActionButton: isSwitched ? joyStickWidget() : Container(),
+      floatingActionButton: JoyStickController.isSwitched ? joyStickWidget() : Container(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
@@ -448,10 +452,14 @@ class _ProfilUserPageState extends State<ProfilUserPage> {
           GestureDetector(
             onTap: () {
               if (currentWidget == 0) {
-                Get.to(AfterLogin());
+                Get.to(Stack(
+                  children: [
+                    AfterLogin(),
+                  ],
+                ));
               } else if (currentWidget == 3) {
                 setState(() {
-                  isSwitched = false;
+                  JoyStickController.isSwitched = false;
                 });
               }
             },

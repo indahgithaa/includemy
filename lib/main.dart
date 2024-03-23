@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:includemy/controller/joystick_controller.dart';
 import 'package:includemy/controller/register_controller.dart';
 import 'package:includemy/controller/user_controller.dart';
 import 'package:includemy/services/token_storage.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Includemy',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -30,6 +32,7 @@ class MyApp extends StatelessWidget {
         Get.put(TokenStorage());
         Get.put(UserInfoServices());
         Get.put(UserController());
+        Get.put(JoyStickController());
       }),
     );
   }

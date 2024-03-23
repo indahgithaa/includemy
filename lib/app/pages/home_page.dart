@@ -6,6 +6,7 @@ import 'package:includemy/app/pages/profil_user.dart';
 import 'package:includemy/app/pages/sertifikasi_page.dart';
 import 'package:includemy/app/styles/color_styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:includemy/controller/joystick_controller.dart';
 import 'package:includemy/controller/user_controller.dart';
 import 'package:includemy/model/user.dart';
 import 'package:includemy/services/user_info_services.dart';
@@ -92,6 +93,8 @@ class _HomePageState extends State<HomePage> {
   String username = 'Demo BCC';
   String email = 'demobcc@gmail.com';
 
+  final JoyStickController joyStickController = Get.find<JoyStickController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,48 +119,69 @@ class _HomePageState extends State<HomePage> {
                               MaterialPageRoute(builder: (context) => ProfilUserPage(name: username, email: email)),
                             );
                           },
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(
-                                'assets/profile-default.svg',
-                                width: 44,
-                                height: 44, 
-                              ),
-                              SizedBox(width: 8),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  //get username from shared preferences
-                                  Text(
-                                    "Hai, ${username}",
-                                    style: GoogleFonts.outfit(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
+                          child: Container(
+                            decoration: BoxDecoration(
+                        border: Border.all(
+                          color: JoyStickController.homePageWidget == 0 && JoyStickController.isSwitched ? ColorStyles.primary : Colors.transparent,
+                        )
+                      ),
+                            child: Row(
+                              children: [
+                                SvgPicture.asset(
+                                  'assets/profile-default.svg',
+                                  width: 44,
+                                  height: 44, 
+                                ),
+                                SizedBox(width: 8),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    //get username from shared preferences
+                                    Text(
+                                      "Hai, ${username}",
+                                      style: GoogleFonts.outfit(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(height: 2),
-                                  Text(
-                                    "Bagaimana kabarmu hari ini?",
-                                    style: GoogleFonts.outfit(
-                                      fontSize: 14,
-                                      color: ColorStyles.greyText,
+                                    SizedBox(height: 2),
+                                    Text(
+                                      "Bagaimana kabarmu hari ini?",
+                                      style: GoogleFonts.outfit(
+                                        fontSize: 14,
+                                        color: ColorStyles.greyText,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                        SvgPicture.asset(
-                          'assets/notification.svg',
-                          width: 24,
-                          height: 24,
+                        Container(
+                          decoration: BoxDecoration(
+                        border: Border.all(
+                          color: JoyStickController.homePageWidget == 1 && JoyStickController.isSwitched ? ColorStyles.primary : Colors.transparent,
+                        )
+                      ),
+                          child: SvgPicture.asset(
+                            'assets/notification.svg',
+                            width: 24,
+                            height: 24,
+                          ),
                         ),
                       ],
-                    ),
+                                         ),
                    ),
                    SizedBox(height: 16,),
-                   SearchBars()
+                   Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                          color: JoyStickController.homePageWidget == 2 && JoyStickController.isSwitched ? ColorStyles.primary : Colors.transparent,
+                        )
+                      ),
+                    child: SearchBars()
+                  )
                  ],
                ),
              ),

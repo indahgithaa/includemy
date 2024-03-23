@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
   void initializeSharedPreferences() async {
     prefs = await SharedPreferences.getInstance(); // Await SharedPreferences initialization
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
